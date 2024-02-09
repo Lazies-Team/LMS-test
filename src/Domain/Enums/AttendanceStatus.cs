@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums
 {
-    public enum Status
+    public enum AttendanceStatus
     {
         Absent = 0,
         Present,
