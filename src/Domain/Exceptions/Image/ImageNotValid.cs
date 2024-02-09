@@ -5,7 +5,7 @@
         public ImageNotValid()
         {
             StatusCode = System.Net.HttpStatusCode.BadRequest;
-            TitleMessage = "Image Not Valid !";
+            TitleMessage = "Image Format Not Valid !";
         }
     }
 }
