@@ -6,8 +6,8 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
         public DateOnly Date { get; set; }
-        public Course CourseId { get; set; }
+        public long CourseId { get; set; }
 
-
+        public Course Course { get; set; }
     }
 }

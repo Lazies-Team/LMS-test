@@ -13,6 +13,5 @@ namespace Domain.Entities
 
         public Lesson Lesson { get; set; }
         public Student Student { get; set; }
-
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.Entities
         public TimeOnly LessonEndAt { get; set; }
         public DateOnly StartAt { get; set; }
         public DateOnly EndAt { get; set; }
-        
+
         public Specialty Specialty { get; set; }
     }
 }
