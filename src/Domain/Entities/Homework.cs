@@ -9,6 +9,7 @@ namespace Domain.Entities
         public long LessonId { get; set; }
         public long UserId { get; set; }
         public DateTime Dedline { get; set; }
+
         public Lesson Lesson { get; set; }
         public User User { get; set; }
     }

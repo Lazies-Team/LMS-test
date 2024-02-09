@@ -1,4 +1,6 @@
 ﻿using Domain.Comman;
+using Domain.Entities.Users;
+using Domain.Enums;
 
 namespace Domain.Entities
 {
@@ -7,6 +9,9 @@ namespace Domain.Entities
         public long UserId { get; set; }
         public long HomeworkId { get; set; }
         public string Description { get; set; }
-        public TaskResultStatus 
+        public TaskResultStatus TaskResultStatus { get; set; }
+
+        public User User { get; set; }
+        public Homework Homework { get; set; }
     }
 }

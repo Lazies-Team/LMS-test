@@ -6,6 +6,5 @@ namespace Domain.Entities
     {
         public long HomeworkId { get; set; }
         public string Path { get; set; }
-
     }
 }
