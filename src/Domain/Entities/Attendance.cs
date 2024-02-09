@@ -6,10 +6,13 @@ namespace Domain.Entities
 {
     public class Attendance : Auditable
     {
-        public Lesson LessonId { get; set; }
-        public Student StudentId { get; set; }
+        public long LessonId { get; set; }
+        public long StudentId { get; set; }
         public Status Status { get; set; }
         public string Description { get; set; }
+
+        public Lesson Lesson { get; set; }
+        public Student Student { get; set; }
 
     }
 }
