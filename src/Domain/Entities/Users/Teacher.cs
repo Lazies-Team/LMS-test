@@ -5,5 +5,7 @@ namespace Domain.Entities.Users
     public class Teacher : Auditable
     {
         public long UserId { get; set; }
+
+        public User User { get; set; }
     }
 }
