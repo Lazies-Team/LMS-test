@@ -5,7 +5,7 @@
         public VideoNotValid()
         {
             StatusCode = System.Net.HttpStatusCode.BadRequest;
-            TitleMessage = "Video Not Valid !";
+            TitleMessage = "Video Format Not Valid !";
         }
     }
 }
