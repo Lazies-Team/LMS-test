@@ -2,7 +2,7 @@
 
 namespace Application.DataTransferObjects.Lessons
 {
-    public record class VideoModificationDTO
+    public record VideoModificationDTO
     (
         long Id,
         IFormFile? Path,
