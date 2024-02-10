@@ -2,7 +2,7 @@
 
 namespace Application.DataTransferObjects.HomeWorks
 {
-    public record class HomeworkFileModificationDTO
+    public record HomeworkFileModificationDTO
     (
         long Id,
         long HomeworkId,
