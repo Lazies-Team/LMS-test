@@ -2,7 +2,7 @@
 
 namespace Application.Abstractions.Users
 {
-    public interface IAdminRepository : GenericRepository<Admin>
+    public interface IAdminRepository : IGenericRepository<Admin>
     {
     }
 }

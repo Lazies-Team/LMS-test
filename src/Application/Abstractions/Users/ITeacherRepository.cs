@@ -2,7 +2,7 @@
 
 namespace Application.Abstractions.Users
 {
-    public interface ITeacherRepository : GenericRepository<Teacher>
+    public interface ITeacherRepository : IGenericRepository<Teacher>
     {
     }
 }

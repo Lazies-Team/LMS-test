@@ -2,7 +2,7 @@
 
 namespace Application.Abstractions.Users
 {
-    public interface IUserRepository : GenericRepository<User>
+    public interface IUserRepository : IGenericRepository<User>
     {
     }
 }
