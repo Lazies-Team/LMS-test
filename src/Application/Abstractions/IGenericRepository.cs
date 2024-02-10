@@ -2,7 +2,7 @@
 
 namespace Application.Abstractions
 {
-    public interface GenericRepository<TEntity>
+    public interface IGenericRepository<TEntity>
     {
         ValueTask<TEntity> InsertAsync(TEntity entity);
         IQueryable<IList<TEntity>> SelectAll();
