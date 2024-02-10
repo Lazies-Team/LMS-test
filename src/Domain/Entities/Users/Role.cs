@@ -1,8 +1,8 @@
 ﻿using Domain.Comman;
 
-namespace Domain.Entities
+namespace Domain.Entities.Users
 {
-    public class Specialty : Auditable
+    public class Role : Auditable
     {
         public string Name { get; set; }
     }

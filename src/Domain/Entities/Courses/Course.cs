@@ -1,6 +1,8 @@
 ﻿using Domain.Comman;
+using Domain.Entities.Lessons;
+using Domain.Entities.Users;
 
-namespace Domain.Entities
+namespace Domain.Entities.Courses
 {
     public class Course : Auditable
     {
@@ -12,5 +14,8 @@ namespace Domain.Entities
         public DateOnly EndAt { get; set; }
 
         public Specialty Specialty { get; set; }
+        public ICollection<Lesson> Lessons { get; set; }
+        public ICollection<Teacher> Teachers { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }

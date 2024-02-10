@@ -2,7 +2,7 @@
 using Domain.Entities.Users;
 using Domain.Enums;
 
-namespace Domain.Entities
+namespace Domain.Entities.Lessons
 {
     public class Attendance : Auditable
     {

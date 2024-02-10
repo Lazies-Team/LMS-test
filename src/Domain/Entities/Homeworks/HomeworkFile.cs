@@ -1,6 +1,6 @@
 ﻿using Domain.Comman;
 
-namespace Domain.Entities
+namespace Domain.Entities.Homeworks
 {
     public class HomeworkFile : Auditable
     {

@@ -1,6 +1,6 @@
 ﻿using Domain.Comman;
 
-namespace Domain.Entities
+namespace Domain.Entities.Tasks
 {
     public class TaskResultFile : Auditable
     {

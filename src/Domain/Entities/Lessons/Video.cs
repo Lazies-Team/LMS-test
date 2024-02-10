@@ -1,7 +1,7 @@
 ﻿using Domain.Comman;
 using Domain.Entities.Users;
 
-namespace Domain.Entities
+namespace Domain.Entities.Lessons
 {
     public class Video : Auditable
     {
@@ -9,9 +9,9 @@ namespace Domain.Entities
         public string Size { get; set; }
         public string Description { get; set; }
         public long LessonId { get; set; }
-        public long UserId { get; set; }
+        public long TeacherId { get; set; }
 
         public Lesson Lesson { get; set; }
-        public User User { get; set; }
+        public Teacher Teacher { get; set; }
     }
 }

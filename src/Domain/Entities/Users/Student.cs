@@ -1,4 +1,6 @@
 ﻿using Domain.Comman;
+using Domain.Entities.Courses;
+using Domain.Entities.Tasks;
 
 namespace Domain.Entities.Users
 {
@@ -8,5 +10,7 @@ namespace Domain.Entities.Users
         public long UserId { get; set; }
 
         public User User { get; set; }
+        public ICollection<Course> Courses { get; set; }
+        public ICollection<TaskResult> TaskResults { get; set; }
     }
 }
