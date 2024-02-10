@@ -2,7 +2,7 @@
 
 namespace Application.DataTransferObjects.Lessons
 {
-    public record class VideoCreationDTO
+    public record VideoCreationDTO
     (
         IFormFile Path,
         string Size,
