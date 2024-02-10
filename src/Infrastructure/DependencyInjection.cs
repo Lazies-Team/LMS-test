@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Application.Abstractions.Users;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
@@ -9,6 +11,11 @@ namespace Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite("Data Source =LMS.DB"));
+
+            services.AddScoped<IUserRepository, IUserRepository>();
+
             return services;
         }
     }
