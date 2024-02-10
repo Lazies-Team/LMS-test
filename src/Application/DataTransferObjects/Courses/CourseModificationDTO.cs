@@ -2,12 +2,12 @@
 {
     public record CourseModificationDTO
     (
-        long Id,
         string Name,
         long SpecialityId,
         TimeOnly LessonStartAt,
         TimeOnly LessonEndAt,
         DateOnly StartAt,
-        DateOnly EndAt
+        DateOnly EndAt,
+        List<long> Teachers
     );
 }

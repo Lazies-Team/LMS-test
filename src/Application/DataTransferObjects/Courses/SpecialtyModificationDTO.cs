@@ -2,7 +2,6 @@
 {
     public record class SpecialtyModificationDTO 
     (
-        long Id,
         string Name
     );
 }
