@@ -7,7 +7,6 @@
         TimeOnly LessonStartAt,
         TimeOnly LessonEndAt,
         DateOnly StartAt,
-        DateOnly EndAt,
-        List<long> Teachers
+        DateOnly EndAt
     );
 }
