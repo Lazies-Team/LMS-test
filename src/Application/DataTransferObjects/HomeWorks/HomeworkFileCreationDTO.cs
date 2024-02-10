@@ -2,7 +2,7 @@
 
 namespace Application.DataTransferObjects.HomeWorks
 {
-    public record class HomeworkFileCreationDTO
+    public record HomeworkFileCreationDTO
     (
         long HomeworkId,
         IFormFile Path
