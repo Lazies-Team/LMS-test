@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.HomeWorks
 {
-    public record class HomeworkCreationDTO
+    public record HomeworkCreationDTO
     (
         string Description,
         long LessonId,
