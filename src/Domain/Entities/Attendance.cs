@@ -8,7 +8,7 @@ namespace Domain.Entities
     {
         public long LessonId { get; set; }
         public long StudentId { get; set; }
-        public Status Status { get; set; }
+        public AttendanceStatus Status { get; set; }
         public string Description { get; set; }
 
         public Lesson Lesson { get; set; }
