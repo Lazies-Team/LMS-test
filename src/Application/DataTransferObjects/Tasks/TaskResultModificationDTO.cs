@@ -2,7 +2,7 @@
 
 namespace Application.DataTransferObjects.Tasks
 {
-    public record class TaskResultModificationDTO
+    public record TaskResultModificationDTO
     (
         long Id,
         long StudentId,

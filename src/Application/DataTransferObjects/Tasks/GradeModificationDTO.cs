@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.Tasks
 {
-    public record class GradeModificationDTO
+    public record GradeModificationDTO
     (
         long Id,
         string Description,

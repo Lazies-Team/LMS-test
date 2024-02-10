@@ -2,7 +2,7 @@
 
 namespace Application.DataTransferObjects.Tasks
 {
-    public record class TaskResultFileCreationDTO
+    public record TaskResultFileCreationDTO
     (
         long TaskResultId,
         IFormFile FilePath
