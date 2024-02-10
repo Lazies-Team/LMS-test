@@ -5,7 +5,6 @@ namespace Application.DataTransferObjects.Users
 {
     public record AdminModificationDTO
     (
-        long Id,
         long UserId
     );
 }

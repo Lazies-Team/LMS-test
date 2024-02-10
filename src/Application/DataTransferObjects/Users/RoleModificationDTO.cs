@@ -2,7 +2,6 @@
 {
     public record RoleModificationDTO
     (
-        long Id,
         string Name
     );
 }
