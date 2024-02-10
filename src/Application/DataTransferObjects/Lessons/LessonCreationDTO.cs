@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.Lessons
 {
-    public record class LessonCreationDTO
+    public record LessonCreationDTO
     (
         string Name,
         DateOnly Date,
