@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace Application.Abstractions
+﻿namespace Application.Abstractions
 {
     public interface IGenericRepository<TEntity>
     {

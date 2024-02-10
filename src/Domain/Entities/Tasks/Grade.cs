@@ -1,5 +1,4 @@
 ﻿using Domain.Comman;
-using Domain.Entities.Users;
 
 namespace Domain.Entities.Tasks
 {

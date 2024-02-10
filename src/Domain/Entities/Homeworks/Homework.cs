@@ -1,7 +1,6 @@
 ﻿using Domain.Comman;
 using Domain.Entities.Lessons;
 using Domain.Entities.Tasks;
-using Domain.Entities.Users;
 
 namespace Domain.Entities.Homeworks
 {
