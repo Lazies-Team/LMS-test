@@ -8,7 +8,7 @@ namespace Application.Services.Users
         ValueTask<UserViewModel> AddAsync(UserCreationDTO userCreationDTO);
         IQueryable<IList<UserViewModel>> GetAll();
         ValueTask<UserViewModel> GetByIdAsync(long id);
-        ValueTask<UserViewModel> UpdateAsync(UserModificationDTO userModificationDTO);
+        ValueTask<UserViewModel> UpdateAsync(UserModificationDTO userModificationDTO, long id);
         ValueTask<UserViewModel> DeleteAsync(long id);
     }
 }

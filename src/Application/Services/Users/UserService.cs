@@ -31,7 +31,7 @@ namespace Application.Services.Users
             throw new NotImplementedException();
         }
 
-        public ValueTask<UserViewModel> UpdateAsync(UserModificationDTO userModificationDTO)
+        public ValueTask<UserViewModel> UpdateAsync(UserModificationDTO userModificationDTO, long id)
         {
             throw new NotImplementedException();
         }
