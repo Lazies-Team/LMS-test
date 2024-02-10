@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.Users
 {
-    public record class StudentCreationDTO
+    public record StudentCreationDTO
     (
         long StudentKey,
         long UserId

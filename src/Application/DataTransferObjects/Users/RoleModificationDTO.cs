@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.Users
 {
-    public record class RoleModificationDTO
+    public record RoleModificationDTO
     (
         long Id,
         string Name

@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.Users
 {
-    public record class RoleCreateionDTO
+    public record RoleCreateionDTO
     (
         string Name
     );

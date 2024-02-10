@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Application.DataTransferObjects.Users
 {
-    public record class AdminCreationDTO
+    public record AdminCreationDTO
     (
         long UserId
     );
