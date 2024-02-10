@@ -6,6 +6,6 @@
         IQueryable<IList<TEntity>> SelectAll();
         ValueTask<TEntity> SelectByIdAsync(long id);
         ValueTask<TEntity> UpdateAsync(TEntity entity);
-        ValueTask<TEntity> DeleteAsync(TEntity entity);
+        ValueTask<TEntity> DeleteAsync(long id);
     }
 }
