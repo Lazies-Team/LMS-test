@@ -4,7 +4,6 @@ namespace Application.DataTransferObjects.Tasks
 {
     public record TaskResultFIleModificationDTo
     (
-        long Id,
         long TaskResultId,
         IFormFile FilePath
     );
