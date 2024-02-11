@@ -11,9 +11,7 @@ namespace Infrastructure.Repositories.Courses
         private readonly ApplicationDbContext _context;
 
         public SpecialtyRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public async ValueTask<Specialty> DeleteAsync(long id)
         {

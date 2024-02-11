@@ -11,9 +11,7 @@ namespace Infrastructure.Repositories.Homeworks
         private readonly ApplicationDbContext _context;
 
         public HomeworkRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public async ValueTask<Homework> DeleteAsync(long id)
         {
