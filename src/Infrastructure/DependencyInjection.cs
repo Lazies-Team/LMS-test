@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions.Users;
+using Infrastructure.Repositories.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +16,9 @@ namespace Infrastructure
                 options.UseLazyLoadingProxies() //Lazy loading
                 .UseSqlite("Data Source =LMS.DB"));
 
-            services.AddScoped<IUserRepository, IUserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
 
             return services;
         }

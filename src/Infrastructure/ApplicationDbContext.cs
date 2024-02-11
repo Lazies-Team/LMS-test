@@ -3,6 +3,7 @@ using Domain.Entities.Homeworks;
 using Domain.Entities.Lessons;
 using Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infrastructure
 {
@@ -23,5 +24,12 @@ namespace Infrastructure
         public DbSet<HomeworkFile> HomeworkFiles { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
     }
 }

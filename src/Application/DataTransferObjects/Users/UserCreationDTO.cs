@@ -1,5 +1,4 @@
 ﻿using Domain.Enums;
-using Microsoft.AspNetCore.Http;
 
 namespace Application.DataTransferObjects.Users
 {
@@ -8,7 +7,6 @@ namespace Application.DataTransferObjects.Users
         string LastName,
         string PhoneNumber,
         DateTime BirthDate,
-        IFormFile ProfilePhotoPath,
         Gender Gender,
         string Login,
         string Password,
