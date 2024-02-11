@@ -49,8 +49,8 @@ namespace Infrastructure.Repositories.Users
 
             if(teacher == null)
                 throw new TeacherNotFound();
+                
             teacher = entity.Adapt(entity);
-            
             var entry = _context.Teachers.Update(teacher);
             await _context.SaveChangesAsync();
 
