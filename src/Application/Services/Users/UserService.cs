@@ -58,7 +58,7 @@ namespace Application.Services.Users
             return userViewModel;
         }
 
-        public async ValueTask<List<UserViewModel>> GetAll()
+        public async ValueTask<List<UserViewModel>> GetAllAsync()
         {
             var result = _userRepository.SelectAll();
             var userViewModels = result.ToList().Adapt<List<UserViewModel>>();
