@@ -38,12 +38,6 @@ namespace Application.Services.Users
             user.RefreshTokenExpireDate = expireDate;
             user.PasswordHash = passwordHash;
 
-            if (userCreationDTO.ProfilePhoto is not null)
-            {
-                string profilePhotoPath = await SavePhotoFile(userCreationDTO.ProfilePhoto);
-                user.ProfilePhotoPath = profilePhotoPath;
-            }
-
             var result = await _userRepository.InsertAsync(user);
             UserViewModel userViewModel = result.Adapt<UserViewModel>();
 
@@ -78,6 +72,13 @@ namespace Application.Services.Users
         {
             var user = userModificationDTO.Adapt<User>();
             user.Id = id;
+
+            if (userModificationDTO.ProfilePhoto is not null)
+            {
+                string profilePhotoPath = await SavePhotoFile(userModificationDTO.ProfilePhoto);
+                user.ProfilePhotoPath = profilePhotoPath;
+            }
+
             var result = await _userRepository.UpdateAsync(user);
             var userViewModel = result.Adapt<UserViewModel>();
 
