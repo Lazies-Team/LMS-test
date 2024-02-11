@@ -11,9 +11,7 @@ namespace Infrastructure.Repositories.Lessons
         private readonly ApplicationDbContext _context;
 
         public VideoRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public async ValueTask<Video> DeleteAsync(long id)
         {
