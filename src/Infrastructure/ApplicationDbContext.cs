@@ -10,5 +10,6 @@ namespace Infrastructure
             => Database.Migrate();
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
     }
 }
