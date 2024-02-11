@@ -13,7 +13,6 @@ namespace Infrastructure.Repositories.Courses
         public CourseRepository(ApplicationDbContext context)
             => _context = context;
         
-
         public async ValueTask<Course> DeleteAsync(long id)
         {
             Course? course = await _context.Course
