@@ -11,9 +11,7 @@ namespace Infrastructure.Repositories.Users
         private readonly ApplicationDbContext _context;
 
         public AdminRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public async ValueTask<Admin> DeleteAsync(long id)
         {
