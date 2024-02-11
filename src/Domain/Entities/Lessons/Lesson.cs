@@ -10,9 +10,9 @@ namespace Domain.Entities.Lessons
         public DateOnly Date { get; set; }
         public long CourseId { get; set; }
 
-        public Course Course { get; set; }
-        public ICollection<Video> Videos { get; set; }
-        public ICollection<Homework> Homeworks { get; set; }
-        public ICollection<Attendance> Attendances { get; set; }
+        public virtual Course Course { get; set; }
+        public virtual ICollection<Video> Videos { get; set; }
+        public virtual ICollection<Homework> Homeworks { get; set; }
+        public virtual ICollection<Attendance> Attendances { get; set; }
     }
 }

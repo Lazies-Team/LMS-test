@@ -11,7 +11,7 @@ namespace Domain.Entities.Lessons
         public AttendanceStatus Status { get; set; }
         public string Description { get; set; }
 
-        public Lesson Lesson { get; set; }
-        public Student Student { get; set; }
+        public virtual Lesson Lesson { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

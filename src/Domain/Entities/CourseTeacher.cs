@@ -9,7 +9,7 @@ namespace Domain.Entities
         public long TeacherId { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public Course Course { get; set; }
-        public Teacher Teacher { get; set; }
+        public virtual Course Course { get; set; }
+        public virtual Teacher Teacher { get; set; }
     }
 }

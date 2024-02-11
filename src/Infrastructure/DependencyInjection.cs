@@ -12,7 +12,8 @@ namespace Infrastructure
             IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite("Data Source =LMS.DB"));
+                options.UseLazyLoadingProxies() //Lazy loading
+                .UseSqlite("Data Source =LMS.DB"));
 
             services.AddScoped<IUserRepository, IUserRepository>();
 

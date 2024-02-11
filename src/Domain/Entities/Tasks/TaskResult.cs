@@ -12,9 +12,9 @@ namespace Domain.Entities.Tasks
         public string Description { get; set; }
         public TaskResultStatus TaskResultStatus { get; set; }
 
-        public Student Student { get; set; }
-        public Homework Homework { get; set; }
-        public Grade Grade { get; set; }
-        public ICollection<TaskResultFile> TaskResultFiles { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Homework Homework { get; set; }
+        public virtual Grade Grade { get; set; }
+        public virtual ICollection<TaskResultFile> TaskResultFiles { get; set; }
     }
 }
