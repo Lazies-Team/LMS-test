@@ -49,7 +49,6 @@ namespace Infrastructure.Repositories.Users
                 throw new StudentNotFound();
 
             student = entity.Adapt(student);
-
             var entry = _context.Students.Update(student);
             await _context.SaveChangesAsync();
 
