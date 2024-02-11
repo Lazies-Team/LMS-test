@@ -16,7 +16,7 @@ namespace Application.Services.Users
         public async ValueTask<RoleViewModel> AddAsync(RoleCreateionDTO roleCreateionDTO)
         {
             var role = roleCreateionDTO.Adapt<Role>();
-            var result = _roleRepository.InsertAsync(role);
+            var result = await _roleRepository.InsertAsync(role);
             var roleViewModel = result.Adapt<RoleViewModel>();
 
             return roleViewModel;
