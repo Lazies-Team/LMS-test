@@ -11,9 +11,7 @@ namespace Infrastructure.Repositories.Tasks
         private ApplicationDbContext _context;
 
         public TaskResultRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public async ValueTask<TaskResult> DeleteAsync(long id)
         {
