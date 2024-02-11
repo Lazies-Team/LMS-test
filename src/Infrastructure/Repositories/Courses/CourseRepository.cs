@@ -11,9 +11,8 @@ namespace Infrastructure.Repositories.Courses
         private readonly ApplicationDbContext _context;
 
         public CourseRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
+        
 
         public async ValueTask<Course> DeleteAsync(long id)
         {
