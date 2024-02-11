@@ -12,7 +12,7 @@ namespace Infrastructure.Repositories.Courses
 
         public CourseRepository(ApplicationDbContext context)
             => _context = context;
-        
+
         public async ValueTask<Course> DeleteAsync(long id)
         {
             Course? course = await _context.Course
@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.Courses
             if (course == null)
                 throw new CourseNotFound();
 
-            course = entity.Adapt(entity);
+            course = entity.Adapt(course);
             var entry = _context.Course.Update(course);
             await _context.SaveChangesAsync();
 

@@ -48,8 +48,7 @@ namespace Infrastructure.Repositories.Users
             if (user is null)
                 throw new UserNotFound();
 
-            user = entity.Adapt(entity);
-
+            user = entity.Adapt(user);
             var entry = _context.Users.Update(user);
             await _context.SaveChangesAsync();
 

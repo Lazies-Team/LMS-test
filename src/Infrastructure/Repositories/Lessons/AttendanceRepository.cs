@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.Lessons
             if (attendance == null)
                 throw new AttendanceNotFound();
 
-            attendance = entity.Adapt(entity);
+            attendance = entity.Adapt(attendance);
             var entry = _context.Attendances.Update(attendance);
             await _context.SaveChangesAsync();
 
