@@ -11,9 +11,7 @@ namespace Infrastructure.Repositories.Tasks
         private readonly ApplicationDbContext _context;
 
         public GradeRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public async ValueTask<Grade> DeleteAsync(long id)
         {
