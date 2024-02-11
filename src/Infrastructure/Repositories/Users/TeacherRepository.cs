@@ -11,9 +11,8 @@ namespace Infrastructure.Repositories.Users
         private readonly ApplicationDbContext _context;
 
         public TeacherRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
+
         public async ValueTask<Teacher> InsertAsync(Teacher entity)
         {
             var entry = await _context.Teachers.AddAsync(entity);
@@ -21,12 +20,14 @@ namespace Infrastructure.Repositories.Users
 
             return entry.Entity;
         }
+
         public IQueryable<Teacher> SelectAll()
         {
             var teachers = _context.Teachers.AsNoTracking();
 
             return teachers;
         }
+
         public async ValueTask<Teacher> SelectByIdAsync(long id)
         {
             var teacher = await _context.Teachers
@@ -39,6 +40,7 @@ namespace Infrastructure.Repositories.Users
             return teacher;
 
         }
+
         public async ValueTask<Teacher> UpdateAsync(Teacher entity)
         {
             var teacher = await _context.Teachers
@@ -54,6 +56,7 @@ namespace Infrastructure.Repositories.Users
 
             return entry.Entity;
         }
+
         public async ValueTask<Teacher> DeleteAsync(long id)
         {
             var teacher = await _context.Teachers
@@ -68,7 +71,5 @@ namespace Infrastructure.Repositories.Users
 
             return entry.Entity;
         }
-
-
     }
 }
