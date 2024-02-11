@@ -8,7 +8,7 @@ namespace Application.DataTransferObjects.Users
         string LastName,
         string PhoneNumber,
         DateTime BirthDate,
-        IFormFile ProfilePhotoPath,
+        IFormFile ProfilePhoto,
         Gender Gender,
         string Login,
         string Password,
