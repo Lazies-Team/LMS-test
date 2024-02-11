@@ -31,6 +31,7 @@ namespace Infrastructure
         public DbSet<TaskResult> TaskResults { get; set; }
         public DbSet<TaskResultFile> TaskResultFiles { get; set; }
         public DbSet<CourseStudent> CourseStudents { get; set; }
+        public DbSet<CourseTeacher> CourseTeachers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
