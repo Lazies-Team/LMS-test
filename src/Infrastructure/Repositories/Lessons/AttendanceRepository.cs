@@ -11,7 +11,7 @@ namespace Infrastructure.Repositories.Lessons
         private readonly ApplicationDbContext _context;
 
         public AttendanceRepository(ApplicationDbContext context)
-            _context = context;
+            => _context = context;
 
         public async ValueTask<Attendance> DeleteAsync(long id)
         {
