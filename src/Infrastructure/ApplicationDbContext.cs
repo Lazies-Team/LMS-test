@@ -11,5 +11,6 @@ namespace Infrastructure
 
         public DbSet<User> Users { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Student> Students { get; set; }
     }
 }
