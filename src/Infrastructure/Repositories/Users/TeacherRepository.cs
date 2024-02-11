@@ -38,7 +38,6 @@ namespace Infrastructure.Repositories.Users
                 throw new TeacherNotFound();
 
             return teacher;
-
         }
 
         public async ValueTask<Teacher> UpdateAsync(Teacher entity)
@@ -49,8 +48,8 @@ namespace Infrastructure.Repositories.Users
 
             if(teacher == null)
                 throw new TeacherNotFound();
+                
             teacher = entity.Adapt(entity);
-            
             var entry = _context.Teachers.Update(teacher);
             await _context.SaveChangesAsync();
 
