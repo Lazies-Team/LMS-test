@@ -6,6 +6,6 @@ namespace Domain.Entities.Users
     {
         public long UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -17,6 +17,6 @@ namespace Domain.Entities.Users
         public DateTime RefreshTokenExpireDate { get; set; }
         public long RoleId { get; set; }
 
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

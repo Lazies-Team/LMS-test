@@ -9,8 +9,8 @@ namespace Domain.Entities.Users
         public long StudentKey { get; set; }
         public long UserId { get; set; }
 
-        public User User { get; set; }
-        public ICollection<Course> Courses { get; set; }
-        public ICollection<TaskResult> TaskResults { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<TaskResult> TaskResults { get; set; }
     }
 }

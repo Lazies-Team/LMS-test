@@ -11,7 +11,7 @@ namespace Domain.Entities.Lessons
         public long LessonId { get; set; }
         public long TeacherId { get; set; }
 
-        public Lesson Lesson { get; set; }
-        public Teacher Teacher { get; set; }
+        public virtual Lesson Lesson { get; set; }
+        public virtual Teacher Teacher { get; set; }
     }
 }

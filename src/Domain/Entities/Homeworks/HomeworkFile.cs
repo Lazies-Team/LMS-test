@@ -7,6 +7,6 @@ namespace Domain.Entities.Homeworks
         public long HomeworkId { get; set; }
         public string Path { get; set; }
 
-        public Homework Homework { get; set; }
+        public virtual Homework Homework { get; set; }
     }
 }

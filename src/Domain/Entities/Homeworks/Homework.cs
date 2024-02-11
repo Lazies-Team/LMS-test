@@ -10,8 +10,8 @@ namespace Domain.Entities.Homeworks
         public long LessonId { get; set; }
         public DateTime Deadline { get; set; }
 
-        public Lesson Lesson { get; set; }
-        public ICollection<TaskResult> TaskResults { get; set; }
-        public ICollection<HomeworkFile> HomeworkFiles { get; set; }
+        public virtual Lesson Lesson { get; set; }
+        public virtual ICollection<TaskResult> TaskResults { get; set; }
+        public virtual ICollection<HomeworkFile> HomeworkFiles { get; set; }
     }
 }

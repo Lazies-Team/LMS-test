@@ -8,6 +8,6 @@ namespace Domain.Entities.Tasks
         public long TaskResultId { get; set; }
         public int Percent { get; set; }
 
-        public TaskResult TaskResult { get; set; }
+        public virtual TaskResult TaskResult { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace Domain.Entities.Tasks
         public long TaskResultId { get; set; }
         public string FilePath { get; set; }
 
-        public TaskResult TaskResult { get; set; }
+        public virtual TaskResult TaskResult { get; set; }
     }
 }
