@@ -12,9 +12,7 @@ namespace Infrastructure.Repositories.Users
         private readonly ApplicationDbContext _context;
 
         public RoleRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         public async ValueTask<Role> DeleteAsync(long id)
         {
