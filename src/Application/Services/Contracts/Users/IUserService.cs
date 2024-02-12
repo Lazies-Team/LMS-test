@@ -1,7 +1,7 @@
 ﻿using Application.DataTransferObjects.Users;
 using Application.ViewModel;
 
-namespace Application.Services.Users
+namespace Application.Services.Contracts.Users
 {
     public interface IUserService
     {
