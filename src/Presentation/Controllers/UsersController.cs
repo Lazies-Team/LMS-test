@@ -1,5 +1,5 @@
 ﻿using Application.DataTransferObjects.Users;
-using Application.Services.Users;
+using Application.Services.Contracts.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers
