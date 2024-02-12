@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.Lessons
             if (video == null)
                 throw new VideoNotFound();
 
-            video = entity.Adapt(entity);
+            video = entity.Adapt(video);
             var entry = _context.Videos.Update(video);
             await _context.SaveChangesAsync();
 

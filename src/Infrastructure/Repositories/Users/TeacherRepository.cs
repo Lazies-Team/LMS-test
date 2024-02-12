@@ -42,14 +42,14 @@ namespace Infrastructure.Repositories.Users
 
         public async ValueTask<Teacher> UpdateAsync(Teacher entity)
         {
-            var teacher = await _context.Teachers
+            Teacher teacher = await _context.Teachers
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == entity.Id);
 
-            if(teacher == null)
+            if (teacher == null)
                 throw new TeacherNotFound();
-                
-            teacher = entity.Adapt(entity);
+
+            teacher = entity.Adapt(teacher);
             var entry = _context.Teachers.Update(teacher);
             await _context.SaveChangesAsync();
 
@@ -62,7 +62,7 @@ namespace Infrastructure.Repositories.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if(teacher == null)
+            if (teacher == null)
                 throw new TeacherNotFound();
 
             var entry = _context.Teachers.Remove(teacher);

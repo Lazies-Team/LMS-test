@@ -57,14 +57,14 @@ namespace Infrastructure.Repositories.Tasks
 
         public async ValueTask<TaskResultFile> UpdateAsync(TaskResultFile entity)
         {
-            var taskResultFile = await _context.TaskResultFiles
+            TaskResultFile taskResultFile = await _context.TaskResultFiles
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == entity.Id);
 
             if (taskResultFile == null)
                 throw new TaskResultFileNotFound();
 
-            taskResultFile = entity.Adapt(entity);
+            taskResultFile = entity.Adapt(taskResultFile);
             var entry = _context.TaskResultFiles.Update(taskResultFile);
             await _context.SaveChangesAsync();
 

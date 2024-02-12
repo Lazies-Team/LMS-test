@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.Courses
             if (specialty == null)
                 throw new SpecialtyNotFound();
 
-            specialty = entity.Adapt(entity);
+            specialty = entity.Adapt(specialty);
             var entry = _context.Specialties.Update(specialty);
             await _context.SaveChangesAsync();
 
