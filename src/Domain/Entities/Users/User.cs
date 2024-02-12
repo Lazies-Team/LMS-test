@@ -12,11 +12,13 @@ namespace Domain.Entities.Users
         public string ProfilePhotoPath { get; set; }
         public Gender Gender { get; set; }
         public string Login { get; set; }
+        public string Salt { get; set; }
         public string PasswordHash { get; set; }
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpireDate { get; set; }
         public long RoleId { get; set; }
+        public bool IsBlocked { get; set; }
 
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
