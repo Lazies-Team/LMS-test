@@ -4,6 +4,7 @@ using Application.Halpers;
 using Application.ViewModel;
 using Domain.Entities.Users;
 using Mapster;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -14,15 +15,18 @@ namespace Application.Services.Users
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public UserService(
             IUserRepository userRepository,
             IPasswordHasher passwordHasher,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IWebHostEnvironment webHostEnvironment)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
             _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async ValueTask<UserViewModel> AddAsync(UserCreationDTO userCreationDTO)
@@ -86,6 +90,17 @@ namespace Application.Services.Users
         }
 
         private async Task<string> SavePhotoFile(IFormFile profilePhoto)
-            => throw new NotImplementedException();
+        {
+            string uniqueFileName = string.Empty;
+            if (profilePhoto != null)
+            {
+                string uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, "profile_photo");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + profilePhoto.FileName;
+                string imageFilePath = Path.Combine(uploadFolder, uniqueFileName);
+                profilePhoto.CopyTo(new FileStream(imageFilePath, FileMode.Create));
+            }
+
+            return uniqueFileName;
+        }
     }
 }

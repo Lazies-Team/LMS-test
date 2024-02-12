@@ -1,5 +1,7 @@
 ﻿using Application.Halpers;
 using Application.Services.Users;
+using Domain.Entities.Users;
+using Mapster;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +14,10 @@ namespace Application
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
+
+            TypeAdapterConfig<User, User>
+                .NewConfig()
+                .IgnoreNullValues(true);
 
             return services;
         }

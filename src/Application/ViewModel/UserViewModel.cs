@@ -6,7 +6,7 @@ namespace Application.ViewModel
     public record UserViewModel(
         long Id,
         string FirstName,
-        string LastNam,
+        string LastName,
         string PhoneNumber,
         DateTime BirthDate,
         string ProfilePhotoPath,

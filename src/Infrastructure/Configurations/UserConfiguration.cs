@@ -9,7 +9,7 @@ namespace Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(x => x.ProfilePhotoPath)
-                .HasDefaultValue(@"profile_photo\default_user.png");
+                .HasDefaultValue(@"profile_photo/default_user.png");
         }
     }
 }
