@@ -13,48 +13,13 @@ namespace Infrastructure.Configurations
             builder.Property(x => x.ProfilePhotoPath)
                 .HasDefaultValue(@"profile_photo/default_user.png");
 
-            builder.Property(u => u.FirstName)
-                .IsRequired();
-
-            builder.Property(u => u.LastName)
-                .IsRequired();
-
-            builder.Property(u => u.PhoneNumber)
-                 .IsRequired();
-
-            builder.Property(u => u.BirthDate)
-                .IsRequired();
-
-            builder.Property(u => u.Gender)
-                .IsRequired();
-
-            builder.Property(u => u.Login)
-                .IsRequired();
-
-            builder.Property(u => u.Salt)
-                .IsRequired();
-
-            builder.Property(u => u.PasswordHash)
-                .IsRequired();
-
-            builder.Property(u => u.RefreshToken)
-                .IsRequired();
-
-            builder.Property(u => u.RefreshTokenExpireDate)
-                .IsRequired();
-
-            builder.Property(u => u.RoleId)
-                .IsRequired();
-
             builder.Property(u => u.IsBlocked)
                 .HasDefaultValue(false);
 
             builder.Property(u => u.CreatedAt)
-                .IsRequired()
                 .HasDefaultValue(DateTime.Now);
 
             builder.Property(u => u.UpdatedAt)
-                .IsRequired()
                 .HasDefaultValue(DateTime.Now);
 
             builder.HasData(
