@@ -18,6 +18,7 @@ namespace Application
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ITeacherService, TeacherService>();
 
             //mapster config
             TypeAdapterConfig<User, User>
