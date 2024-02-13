@@ -1,4 +1,5 @@
 ﻿using Application.Halpers;
+using Application.Services.Contracts.Users;
 using Application.Services.Users;
 using Domain.Entities.Users;
 using Mapster;
@@ -12,8 +13,8 @@ namespace Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IPasswordHasher, PasswordHasher>();
-            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IUserService, UserService>();
 
             TypeAdapterConfig<User, User>
                 .NewConfig()
