@@ -39,9 +39,7 @@ namespace Infrastructure.Configurations
                 RefreshTokenExpireDate = DateTime.Now.AddDays(1),
                 RoleId = 3,
                 IsBlocked = false
-            });
-
-            
+            });            
 
             builder.HasOne(e => e.Admin)
                 .WithOne(e => e.User)
