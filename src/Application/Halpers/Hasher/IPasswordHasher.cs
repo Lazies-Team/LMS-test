@@ -1,4 +1,4 @@
-﻿namespace Application.Halpers
+﻿namespace Application.Halpers.Hasher
 {
     public interface IPasswordHasher
     {

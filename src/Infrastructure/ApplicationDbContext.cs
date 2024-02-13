@@ -15,21 +15,32 @@ namespace Infrastructure
             : base(options)
             => Database.Migrate();
 
+        //users
         public DbSet<User> Users { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Admin> Admins { get; set; }
+
+        //course
         public DbSet<Course> Course { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
+
+        //homework
         public DbSet<Homework> Homeworks { get; set; }
         public DbSet<HomeworkFile> HomeworkFiles { get; set; }
+
+        //lesson
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Video> Videos { get; set; }
+
+        //tasks
         public DbSet<Grade> Grades { get; set; }
         public DbSet<TaskResult> TaskResults { get; set; }
         public DbSet<TaskResultFile> TaskResultFiles { get; set; }
+
+        //relationtables
         public DbSet<CourseStudent> CourseStudents { get; set; }
         public DbSet<CourseTeacher> CourseTeachers { get; set; }
 
