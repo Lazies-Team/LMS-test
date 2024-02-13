@@ -40,6 +40,22 @@ namespace Infrastructure.Configurations
                 RoleId = 3,
                 IsBlocked = false
             });
+
+            .HasDefaultValue(@"profile_photo/default_user.png");
+
+            builder.HasOne(e => e.Admin)
+                .WithOne(e => e.User)
+                .HasForeignKey<Admin>(e => e.UserId)
+                .IsRequired();
+
+            builder.HasOne(e => e.Teacher)
+                .WithOne(e => e.User)
+                .HasForeignKey<Teacher>(e => e.UserId)
+                .IsRequired();
+
+            builder.HasOne(e => e.Student)
+                .WithOne(e => e.User)
+                .HasForeignKey<Student>(e => e.UserId)
         }
     }
 }

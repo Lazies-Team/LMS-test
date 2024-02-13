@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240211140824_Photo")]
-    partial class Photo
+    [Migration("20240213194818_User-One-To-One")]
+    partial class UserOneToOne
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,42 @@ namespace Infrastructure.Migrations
                     b.HasIndex("TeachersId");
 
                     b.ToTable("CourseTeacher");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseStudent", b =>
+                {
+                    b.Property<long>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("StudentId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseStudents");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseTeacher", b =>
+                {
+                    b.Property<long>("TeacherId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("TeacherId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseTeachers");
                 });
 
             modelBuilder.Entity("Domain.Entities.Courses.Course", b =>
@@ -113,7 +149,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialty");
+                    b.ToTable("Specialties");
                 });
 
             modelBuilder.Entity("Domain.Entities.Homeworks.Homework", b =>
@@ -142,7 +178,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("LessonId");
 
-                    b.ToTable("Homework");
+                    b.ToTable("Homeworks");
                 });
 
             modelBuilder.Entity("Domain.Entities.Homeworks.HomeworkFile", b =>
@@ -168,7 +204,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("HomeworkId");
 
-                    b.ToTable("HomeworkFile");
+                    b.ToTable("HomeworkFiles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Lessons.Attendance", b =>
@@ -202,7 +238,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Attendance");
+                    b.ToTable("Attendances");
                 });
 
             modelBuilder.Entity("Domain.Entities.Lessons.Lesson", b =>
@@ -231,7 +267,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Lesson");
+                    b.ToTable("Lessons");
                 });
 
             modelBuilder.Entity("Domain.Entities.Lessons.Video", b =>
@@ -270,7 +306,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Video");
+                    b.ToTable("Videos");
                 });
 
             modelBuilder.Entity("Domain.Entities.Tasks.Grade", b =>
@@ -300,7 +336,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex("TaskResultId")
                         .IsUnique();
 
-                    b.ToTable("Grade");
+                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("Domain.Entities.Tasks.TaskResult", b =>
@@ -334,7 +370,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("TaskResult");
+                    b.ToTable("TaskResults");
                 });
 
             modelBuilder.Entity("Domain.Entities.Tasks.TaskResultFile", b =>
@@ -360,7 +396,30 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("TaskResultId");
 
-                    b.ToTable("TaskResultFile");
+                    b.ToTable("TaskResultFiles");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Users.Admin", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("Domain.Entities.Users.Role", b =>
@@ -370,18 +429,46 @@ namespace Infrastructure.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 2, 14, 0, 48, 16, 799, DateTimeKind.Local).AddTicks(9735));
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValue(new DateTime(2024, 2, 14, 0, 48, 16, 800, DateTimeKind.Local).AddTicks(150));
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Student",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Teacher",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Admin",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Users.Student", b =>
@@ -404,7 +491,8 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Students");
                 });
@@ -426,7 +514,8 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("Teachers");
                 });
@@ -473,7 +562,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValue("profile_photo\\default_user.png");
+                        .HasDefaultValue("profile_photo/default_user.png");
 
                     b.Property<string>("RefreshToken")
                         .IsRequired()
@@ -527,6 +616,44 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("TeachersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseStudent", b =>
+                {
+                    b.HasOne("Domain.Entities.Courses.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Users.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseTeacher", b =>
+                {
+                    b.HasOne("Domain.Entities.Courses.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Users.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("Domain.Entities.Courses.Course", b =>
@@ -652,11 +779,22 @@ namespace Infrastructure.Migrations
                     b.Navigation("TaskResult");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Users.Admin", b =>
+                {
+                    b.HasOne("Domain.Entities.Users.User", "User")
+                        .WithOne("Admin")
+                        .HasForeignKey("Domain.Entities.Users.Admin", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Entities.Users.Student", b =>
                 {
                     b.HasOne("Domain.Entities.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Student")
+                        .HasForeignKey("Domain.Entities.Users.Student", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -666,8 +804,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Users.Teacher", b =>
                 {
                     b.HasOne("Domain.Entities.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Teacher")
+                        .HasForeignKey("Domain.Entities.Users.Teacher", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -722,6 +860,15 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.Users.Student", b =>
                 {
                     b.Navigation("TaskResults");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Users.User", b =>
+                {
+                    b.Navigation("Admin");
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Teacher");
                 });
 #pragma warning restore 612, 618
         }

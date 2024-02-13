@@ -11,11 +11,12 @@ namespace Infrastructure.Repositories.Users
         private readonly ApplicationDbContext _context;
 
         public StudentRepository(ApplicationDbContext context)
-            => _context = context;        
+            => _context = context;
 
         public async ValueTask<Student> InsertAsync(Student entity)
         {
             var entry = await _context.Students.AddAsync(entity);
+            await _context.SaveChangesAsync();
 
             return entry.Entity;
         }
