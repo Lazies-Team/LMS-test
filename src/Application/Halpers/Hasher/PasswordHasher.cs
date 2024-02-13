@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Application.Halpers
+namespace Application.Halpers.Hasher
 {
     public class PasswordHasher : IPasswordHasher
     {

@@ -70,6 +70,5 @@ namespace Infrastructure.Repositories.Users
 
             return entry.Entity;
         }
-
     }
 }
