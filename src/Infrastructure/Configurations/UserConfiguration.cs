@@ -34,14 +34,14 @@ namespace Infrastructure.Configurations
                 Gender = Gender.Male,
                 Login = "murodovich",
                 Salt = "sarvar",
-                PasswordHash = "sarvar0303",
+                PasswordHash = "5605b79792f56859005103910bca2de67beb3c924f64138442eee5734e315344",
                 RefreshToken = "bir nima",
                 RefreshTokenExpireDate = DateTime.Now.AddDays(1),
                 RoleId = 3,
                 IsBlocked = false
             });
 
-            .HasDefaultValue(@"profile_photo/default_user.png");
+            
 
             builder.HasOne(e => e.Admin)
                 .WithOne(e => e.User)
@@ -56,6 +56,7 @@ namespace Infrastructure.Configurations
             builder.HasOne(e => e.Student)
                 .WithOne(e => e.User)
                 .HasForeignKey<Student>(e => e.UserId)
+                .IsRequired();
         }
     }
 }
