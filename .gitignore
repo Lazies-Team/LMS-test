@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/src/Presentation/LMS.DB
+/src/Presentation/LMS.DB-shm
+/src/Presentation/LMS.DB-wal
