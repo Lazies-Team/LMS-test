@@ -1,5 +1,4 @@
-﻿using Domain.Entities.Users;
-using Domain.Enums;
+﻿using Domain.Enums;
 
 namespace Application.ViewModel
 {
@@ -12,8 +11,9 @@ namespace Application.ViewModel
         string ProfilePhotoPath,
         Gender Gender,
         string Login,
-        Role Role,
+        RoleViewModel Role,
         DateTime CreatedAt,
-        DateTime UpdatedDate
-        );
+        DateTime UpdatedDate,
+        AdminViewModel Admin
+    );
 }
