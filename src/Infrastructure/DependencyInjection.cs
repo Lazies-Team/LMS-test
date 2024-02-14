@@ -1,4 +1,6 @@
-﻿using Application.Abstractions.Users;
+﻿using Application.Abstractions.Courses;
+using Application.Abstractions.Users;
+using Infrastructure.Repositories.Courses;
 using Infrastructure.Repositories.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +24,7 @@ namespace Infrastructure
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
 
             return services;
         }
