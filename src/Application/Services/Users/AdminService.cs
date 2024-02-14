@@ -44,7 +44,7 @@ namespace Application.Services.Users
             admin.Id = id;
 
             var result = await _adminRepository.UpdateAsync(admin);
-            var adminViewModel = admin.Adapt<AdminViewModel>();
+            var adminViewModel = result.Adapt<AdminViewModel>();
 
             return adminViewModel;
         }
