@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Users;
+using Domain.Entities.Users;
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -40,8 +40,6 @@ namespace Infrastructure.Configurations
                 RoleId = 3,
                 IsBlocked = false
             });
-
-            
 
             builder.HasOne(e => e.Admin)
                 .WithOne(e => e.User)
