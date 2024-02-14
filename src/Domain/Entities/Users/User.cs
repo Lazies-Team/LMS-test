@@ -20,5 +20,8 @@ namespace Domain.Entities.Users
         public bool IsBlocked { get; set; }
 
         public virtual Role Role { get; set; }
+        public virtual Admin? Admin { get; set; }
+        public virtual Teacher? Teacher { get; set; }
+        public virtual Student? Student { get; set; }
     }
 }

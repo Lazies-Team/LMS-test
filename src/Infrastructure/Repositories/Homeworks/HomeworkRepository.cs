@@ -64,7 +64,7 @@ namespace Infrastructure.Repositories.Homeworks
             if (homework == null)
                 throw new HomeWorkNotFound();
 
-            homework = entity.Adapt(entity);
+            homework = entity.Adapt(homework);
             var entry = _context.Homeworks.Update(homework);
             await _context.SaveChangesAsync();
 

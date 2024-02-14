@@ -14,11 +14,14 @@ namespace Infrastructure
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies() //Lazy loading
-                .UseSqlite("Data Source =LMS.DB"));
+                .UseSqlServer(configuration.GetConnectionString("SqlServer")));
 
+            //user
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
             return services;
         }

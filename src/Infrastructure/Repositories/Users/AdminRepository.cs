@@ -57,14 +57,14 @@ namespace Infrastructure.Repositories.Users
 
         public async ValueTask<Admin> UpdateAsync(Admin entity)
         {
-            var admin = await _context.Admins
+            Admin admin = await _context.Admins
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == entity.Id);
 
             if (admin == null)
                 throw new AdminNotFound();
 
-            admin = entity.Adapt(entity);
+            admin = entity.Adapt(admin);
             var entry = _context.Admins.Update(admin);
             await _context.SaveChangesAsync();
 

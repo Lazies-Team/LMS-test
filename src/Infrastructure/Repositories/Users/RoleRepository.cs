@@ -65,7 +65,7 @@ namespace Infrastructure.Repositories.Users
             if (role == null)
                 throw new RoleNotFound();
 
-            role = entity.Adapt(entity);
+            role = entity.Adapt(role);
             var entry = _context.Roles.Update(role);
             await _context.SaveChangesAsync();
 

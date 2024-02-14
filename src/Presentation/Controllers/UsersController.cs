@@ -38,7 +38,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUserAsync(UserModificationDTO userModificationDTO, long id)
+        public async Task<IActionResult> PutUserAsync([FromForm] UserModificationDTO userModificationDTO, long id)
         {
             var user = await _userService.UpdateAsync(userModificationDTO, id);
 

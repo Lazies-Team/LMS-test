@@ -1,10 +1,11 @@
 ﻿using Application.Abstractions.Users;
 using Application.DataTransferObjects.Users;
-using Application.Halpers;
+using Application.Halpers.Hasher;
 using Application.Services.Contracts.Users;
 using Application.ViewModel;
 using Domain.Entities.Users;
 using Mapster;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
@@ -13,17 +14,29 @@ namespace Application.Services.Users
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IAdminRepository _adminRepository;
+        private readonly ITeacherRepository _teacherRepository;
+        private readonly IStudentRepository _studentRepository;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public UserService(
             IUserRepository userRepository,
             IPasswordHasher passwordHasher,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IWebHostEnvironment webHostEnvironment,
+            IAdminRepository adminRepository,
+            ITeacherRepository teacherRepository,
+            IStudentRepository studentRepository)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
             _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
+            _adminRepository = adminRepository;
+            _teacherRepository = teacherRepository;
+            _studentRepository = studentRepository;
         }
 
         public async ValueTask<UserViewModel> AddAsync(UserCreationDTO userCreationDTO)
@@ -40,6 +53,39 @@ namespace Application.Services.Users
             user.PasswordHash = passwordHash;
 
             var result = await _userRepository.InsertAsync(user);
+
+            if (userCreationDTO.RoleId == 1)
+            {
+                var student = new Student()
+                {
+                    UserId = result.Id,
+                    User = result,
+                    StudentKey = Guid.NewGuid().ToString(),
+                };
+
+                await _studentRepository.InsertAsync(student);
+            }
+            else if (userCreationDTO.RoleId == 2)
+            {
+                var teacher = new Teacher()
+                {
+                    UserId = result.Id,
+                    User = result
+                };
+
+                await _teacherRepository.InsertAsync(teacher);
+            }
+            else if (userCreationDTO.RoleId == 3)
+            {
+                var admin = new Admin()
+                {
+                    UserId = result.Id,
+                    User = result
+                };
+
+                await _adminRepository.InsertAsync(admin);
+            }
+
             UserViewModel userViewModel = result.Adapt<UserViewModel>();
 
             return userViewModel;
@@ -87,6 +133,17 @@ namespace Application.Services.Users
         }
 
         private async Task<string> SavePhotoFile(IFormFile profilePhoto)
-            => throw new NotImplementedException();
+        {
+            string uniqueFileName = string.Empty;
+            if (profilePhoto != null)
+            {
+                string uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, "profile_photo");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + profilePhoto.FileName;
+                string imageFilePath = Path.Combine(uploadFolder, uniqueFileName);
+                profilePhoto.CopyTo(new FileStream(imageFilePath, FileMode.Create));
+            }
+
+            return uniqueFileName;
+        }
     }
 }
