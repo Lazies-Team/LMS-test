@@ -1,8 +1,6 @@
 ﻿using Application.Halpers.Hasher;
 using Application.Services.Contracts.Users;
 using Application.Services.Users;
-using Domain.Entities.Users;
-using Mapster;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,12 +16,7 @@ namespace Application
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IAdminService, AdminService>();
-            services.AddScoped<ITeacherService, TeacherService>();
-
-            //mapster config
-            TypeAdapterConfig<User, User>
-                .NewConfig()
-                .IgnoreNullValues(true);
+            services.AddScoped<IStudentService, StudentService>();
 
             return services;
         }

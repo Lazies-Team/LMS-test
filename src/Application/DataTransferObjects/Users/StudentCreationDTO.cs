@@ -2,7 +2,7 @@
 {
     public record StudentCreationDTO
     (
-        long StudentKey,
+        string StudentKey,
         long UserId
     );
 }
