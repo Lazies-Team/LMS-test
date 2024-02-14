@@ -1,5 +1,6 @@
 ﻿using Application.DataTransferObjects.Users;
 using Application.ViewModel;
+using Domain.Entities.Users;
 
 namespace Application.Services.Contracts.Users
 {

@@ -14,6 +14,7 @@ namespace Application.ViewModel
         string Login,
         Role Role,
         DateTime CreatedAt,
-        DateTime UpdatedDate
+        DateTime UpdatedDate,
+        TeacherViewModel Teacher
         );
 }

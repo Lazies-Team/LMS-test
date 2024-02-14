@@ -18,13 +18,13 @@ namespace Application.Services.Users
         public async ValueTask<List<TeacherViewModel>> GetAllAsync()
         {
             var result = _teacherRepository.SelectAll();
-            var teacherViewModel = result.ToList().Adapt<List<TeacherViewModel>>();
+            var teacherViewModels = result.ToList().Adapt<List<TeacherViewModel>>();
 
-            return teacherViewModel;
+            return teacherViewModels;
         }
 
         public async ValueTask<TeacherViewModel> GetByIdAsync(long id)
-        {
+        {   
             var result = await _teacherRepository.SelectByIdAsync(id);
             var teacherViewModel = result.Adapt<TeacherViewModel>();
 
@@ -40,6 +40,7 @@ namespace Application.Services.Users
 
             return teacherViewModel;
         }
+
         public async ValueTask<TeacherViewModel> DeleteAsync(long id)
         {
             var result = await _teacherRepository.DeleteAsync(id);

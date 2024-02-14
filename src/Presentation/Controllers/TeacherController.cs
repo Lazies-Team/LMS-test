@@ -20,21 +20,21 @@ namespace Presentation.Controllers
 
             return Ok(teachers);
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdTeacherAsync(long id)
         {
             var teacher = await _service.GetByIdAsync(id);
 
             return Ok(teacher);
         }
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTeacherAsync(TeacherModificationDTO teacherModificationDTO, long id)
         {
             var teacher = await _service.UpdateAsync(teacherModificationDTO, id);
 
             return Ok(teacher);
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeacherAsync(long id)
         {
             var teacher = await _service.DeleteAsync(id);
