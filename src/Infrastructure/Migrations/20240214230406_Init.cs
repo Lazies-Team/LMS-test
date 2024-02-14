@@ -20,8 +20,8 @@ namespace Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(1632)),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(2295))
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 15, 4, 4, 5, 754, DateTimeKind.Local).AddTicks(8379)),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 15, 4, 4, 5, 755, DateTimeKind.Local).AddTicks(403))
                 },
                 constraints: table =>
                 {
@@ -61,7 +61,7 @@ namespace Infrastructure.Migrations
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RefreshTokenExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RoleId = table.Column<long>(type: "bigint", nullable: false),
-                    IsBlocked = table.Column<bool>(type: "bit", nullable: false),
+                    IsBlocked = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -478,6 +478,11 @@ namespace Infrastructure.Migrations
                     { 2L, "Teacher" },
                     { 3L, "Admin" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "BirthDate", "CreatedAt", "FirstName", "Gender", "LastName", "Login", "PasswordHash", "PhoneNumber", "ProfilePhotoPath", "RefreshToken", "RefreshTokenExpireDate", "RoleId", "Salt", "UpdatedAt" },
+                values: new object[] { 1L, new DateTime(2003, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sarvar", 0, "G'ulomjonov", "murodovich", "5605b79792f56859005103910bca2de67beb3c924f64138442eee5734e315344", "+998950940303", "profile_photo/murodovich.png", "bir nima", new DateTime(2024, 2, 16, 4, 4, 5, 755, DateTimeKind.Local).AddTicks(7781), 3L, "sarvar", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_UserId",

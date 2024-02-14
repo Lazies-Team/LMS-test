@@ -456,7 +456,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(1632));
+                        .HasDefaultValue(new DateTime(2024, 2, 15, 4, 4, 5, 754, DateTimeKind.Local).AddTicks(8379));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -466,7 +466,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(2295));
+                        .HasDefaultValue(new DateTime(2024, 2, 15, 4, 4, 5, 755, DateTimeKind.Local).AddTicks(403));
 
                     b.HasKey("Id");
 
@@ -572,7 +572,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsBlocked")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -618,6 +620,27 @@ namespace Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BirthDate = new DateTime(2003, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Sarvar",
+                            Gender = 0,
+                            IsBlocked = false,
+                            LastName = "G'ulomjonov",
+                            Login = "murodovich",
+                            PasswordHash = "5605b79792f56859005103910bca2de67beb3c924f64138442eee5734e315344",
+                            PhoneNumber = "+998950940303",
+                            ProfilePhotoPath = "profile_photo/murodovich.png",
+                            RefreshToken = "bir nima",
+                            RefreshTokenExpireDate = new DateTime(2024, 2, 16, 4, 4, 5, 755, DateTimeKind.Local).AddTicks(7781),
+                            RoleId = 3L,
+                            Salt = "sarvar",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("CourseStudent", b =>
