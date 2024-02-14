@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions.Users;
 using Application.DataTransferObjects.Users;
-using Application.Halpers;
+using Application.Halpers.Hasher;
 using Application.Services.Contracts.Users;
 using Application.ViewModel;
 using Domain.Entities.Users;
@@ -82,6 +82,8 @@ namespace Application.Services.Users
                     UserId = result.Id,
                     User = result
                 };
+
+                await _adminRepository.InsertAsync(admin);
             }
 
             UserViewModel userViewModel = result.Adapt<UserViewModel>();
