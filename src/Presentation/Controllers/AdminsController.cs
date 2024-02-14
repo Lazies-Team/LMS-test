@@ -31,7 +31,7 @@ namespace Presentation.Controllers
             return Ok(admin);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> UpdateAdminAsync(AdminModificationDTO adminModificationDTO, long id)
         {
             var admin = await _adminService.UpdateAsync(adminModificationDTO, id);
