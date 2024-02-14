@@ -11,9 +11,7 @@ namespace Presentation.Controllers
         private readonly ISpecialtyService _specialtyService;
 
         public SpecialtyController(ISpecialtyService specialtyService)
-        {
-            _specialtyService = specialtyService;
-        }
+            => _specialtyService = specialtyService;
 
         [HttpPost]
         public async Task<IActionResult> PostSpecialtyAsync(SpecialtyCreationDTO specialtyCreationDTO)
