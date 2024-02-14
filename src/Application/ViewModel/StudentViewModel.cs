@@ -7,7 +7,6 @@ namespace Application.ViewModel
         long Id,
         string StudentKey,
         long UserId,
-        //User User,
         ICollection<Course> Courses,
         ICollection<TaskResult> TaskResults,
         DateTime CreatedAt,

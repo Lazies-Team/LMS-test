@@ -14,6 +14,7 @@ namespace Application.ViewModel
         RoleViewModel Role,
         DateTime CreatedAt,
         DateTime UpdatedDate,
-        AdminViewModel Admin
+        AdminViewModel Admin,
+        StudentViewModel Student
     );
 }
