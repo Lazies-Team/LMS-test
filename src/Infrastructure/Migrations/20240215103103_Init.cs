@@ -20,8 +20,8 @@ namespace Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(1632)),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(2295))
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,7 +29,7 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Specialties",
+                name: "Specialities",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -40,7 +40,7 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Specialties", x => x.Id);
+                    table.PrimaryKey("PK_Specialities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,7 +61,7 @@ namespace Infrastructure.Migrations
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RefreshTokenExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RoleId = table.Column<long>(type: "bigint", nullable: false),
-                    IsBlocked = table.Column<bool>(type: "bit", nullable: false),
+                    IsBlocked = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -77,7 +77,7 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Course",
+                name: "Courses",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -88,17 +88,16 @@ namespace Infrastructure.Migrations
                     LessonEndAt = table.Column<TimeOnly>(type: "time", nullable: false),
                     StartAt = table.Column<DateOnly>(type: "date", nullable: false),
                     EndAt = table.Column<DateOnly>(type: "date", nullable: false),
-                    SpecialtyId = table.Column<long>(type: "bigint", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => x.Id);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Course_Specialties_SpecialtyId",
-                        column: x => x.SpecialtyId,
-                        principalTable: "Specialties",
+                        name: "FK_Courses_Specialities_SpecialityId",
+                        column: x => x.SpecialityId,
+                        principalTable: "Specialities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -183,9 +182,9 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Lessons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Lessons_Course_CourseId",
+                        name: "FK_Lessons_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -201,9 +200,9 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_CourseStudent", x => new { x.CoursesId, x.StudentsId });
                     table.ForeignKey(
-                        name: "FK_CourseStudent_Course_CoursesId",
+                        name: "FK_CourseStudent_Courses_CoursesId",
                         column: x => x.CoursesId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -226,9 +225,9 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_CourseStudents", x => new { x.StudentId, x.CourseId });
                     table.ForeignKey(
-                        name: "FK_CourseStudents_Course_CourseId",
+                        name: "FK_CourseStudents_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -250,9 +249,9 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_CourseTeacher", x => new { x.CoursesId, x.TeachersId });
                     table.ForeignKey(
-                        name: "FK_CourseTeacher_Course_CoursesId",
+                        name: "FK_CourseTeacher_Courses_CoursesId",
                         column: x => x.CoursesId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -275,9 +274,9 @@ namespace Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_CourseTeachers", x => new { x.TeacherId, x.CourseId });
                     table.ForeignKey(
-                        name: "FK_CourseTeachers_Course_CourseId",
+                        name: "FK_CourseTeachers_Courses_CourseId",
                         column: x => x.CourseId,
-                        principalTable: "Course",
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -471,13 +470,18 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Roles",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1L, "Student" },
-                    { 2L, "Teacher" },
-                    { 3L, "Admin" }
+                    { 1L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Student", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Teacher", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3L, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "BirthDate", "CreatedAt", "FirstName", "Gender", "LastName", "Login", "PasswordHash", "PhoneNumber", "ProfilePhotoPath", "RefreshToken", "RefreshTokenExpireDate", "RoleId", "Salt", "UpdatedAt" },
+                values: new object[] { 1L, new DateTime(2003, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sarvar", 0, "G'ulomjonov", "murodovich", "5605b79792f56859005103910bca2de67beb3c924f64138442eee5734e315344", "+998950940303", "profile_photo/murodovich.png", "bir nima", new DateTime(2024, 2, 16, 15, 31, 2, 712, DateTimeKind.Local).AddTicks(1190), 3L, "sarvar", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_UserId",
@@ -496,9 +500,9 @@ namespace Infrastructure.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_SpecialtyId",
-                table: "Course",
-                column: "SpecialtyId");
+                name: "IX_Courses_SpecialityId",
+                table: "Courses",
+                column: "SpecialityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseStudent_StudentsId",
@@ -636,13 +640,13 @@ namespace Infrastructure.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Courses");
 
             migrationBuilder.DropTable(
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Specialties");
+                name: "Specialities");
         }
     }
 }

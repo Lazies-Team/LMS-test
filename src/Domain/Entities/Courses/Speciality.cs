@@ -2,7 +2,7 @@
 
 namespace Domain.Entities.Courses
 {
-    public class Specialty : Auditable
+    public class Speciality : Auditable
     {
         public string Name { get; set; }
 

@@ -1,6 +1,4 @@
 ﻿using Domain.Entities.Courses;
-using Domain.Entities.Lessons;
-using Domain.Entities.Users;
 
 namespace Application.ViewModel
 {
@@ -13,9 +11,9 @@ namespace Application.ViewModel
         DateOnly StartAt,
         DateOnly EndAt,
 
-        Specialty Specialty,
-        ICollection<Lesson> Lessons,
-        ICollection<Teacher> Teachers,
-        ICollection<Student> Students
+        Speciality Specialty,
+        ICollection<LessonViewModel> Lessons,
+        ICollection<TeacherViewModel> Teachers,
+        ICollection<StudentViewModel> Students
     );
 }

@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.CourseConfiguration
 {
-    public record CourseModificationDTO
+    public record CourseStudentModificationDTO
     (
         long CourseId,
         long StudentId

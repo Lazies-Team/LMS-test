@@ -61,6 +61,8 @@ namespace Application.Services.Users
                     UserId = result.Id,
                     User = result,
                     StudentKey = Guid.NewGuid().ToString(),
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
                 };
 
                 await _studentRepository.InsertAsync(student);
@@ -70,7 +72,9 @@ namespace Application.Services.Users
                 var teacher = new Teacher()
                 {
                     UserId = result.Id,
-                    User = result
+                    User = result,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
                 };
 
                 await _teacherRepository.InsertAsync(teacher);
@@ -80,7 +84,9 @@ namespace Application.Services.Users
                 var admin = new Admin()
                 {
                     UserId = result.Id,
-                    User = result
+                    User = result,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
                 };
 
                 await _adminRepository.InsertAsync(admin);

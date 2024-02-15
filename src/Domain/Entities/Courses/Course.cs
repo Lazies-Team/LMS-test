@@ -13,7 +13,7 @@ namespace Domain.Entities.Courses
         public DateOnly StartAt { get; set; }
         public DateOnly EndAt { get; set; }
 
-        public virtual Specialty Specialty { get; set; }
+        public virtual Speciality Specialty { get; set; }
         public virtual ICollection<Lesson> Lessons { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }
         public virtual ICollection<Student> Students { get; set; }

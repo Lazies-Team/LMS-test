@@ -2,7 +2,7 @@
 
 namespace Application.Abstractions.Courses
 {
-    public interface ISpecialtyRepository : IGenericRepository<Specialty>
+    public interface ISpecialityRepository : IGenericRepository<Speciality>
     {
     }
 }

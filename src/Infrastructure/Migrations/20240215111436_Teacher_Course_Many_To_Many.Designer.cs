@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240213205708_Init")]
-    partial class Init
+    [Migration("20240215111436_Teacher_Course_Many_To_Many")]
+    partial class Teacher_Course_Many_To_Many
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,9 +121,6 @@ namespace Infrastructure.Migrations
                     b.Property<long>("SpecialityId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("SpecialtyId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateOnly>("StartAt")
                         .HasColumnType("date");
 
@@ -132,12 +129,12 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SpecialtyId");
+                    b.HasIndex("SpecialityId");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Courses.Specialty", b =>
+            modelBuilder.Entity("Domain.Entities.Courses.Speciality", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,7 +154,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialties");
+                    b.ToTable("Specialities");
                 });
 
             modelBuilder.Entity("Domain.Entities.Homeworks.Homework", b =>
@@ -457,9 +454,7 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(1632));
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -467,9 +462,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 14, 1, 57, 8, 293, DateTimeKind.Local).AddTicks(2295));
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -575,7 +568,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsBlocked")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -621,6 +616,27 @@ namespace Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BirthDate = new DateTime(2003, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Sarvar",
+                            Gender = 0,
+                            IsBlocked = false,
+                            LastName = "G'ulomjonov",
+                            Login = "murodovich",
+                            PasswordHash = "5605b79792f56859005103910bca2de67beb3c924f64138442eee5734e315344",
+                            PhoneNumber = "+998950940303",
+                            ProfilePhotoPath = "profile_photo/murodovich.png",
+                            RefreshToken = "bir nima",
+                            RefreshTokenExpireDate = new DateTime(2024, 2, 16, 16, 14, 36, 49, DateTimeKind.Local).AddTicks(207),
+                            RoleId = 3L,
+                            Salt = "sarvar",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("CourseStudent", b =>
@@ -693,9 +709,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Courses.Course", b =>
                 {
-                    b.HasOne("Domain.Entities.Courses.Specialty", "Specialty")
+                    b.HasOne("Domain.Entities.Courses.Speciality", "Specialty")
                         .WithMany("Courses")
-                        .HasForeignKey("SpecialtyId")
+                        .HasForeignKey("SpecialityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -863,7 +879,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Lessons");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Courses.Specialty", b =>
+            modelBuilder.Entity("Domain.Entities.Courses.Speciality", b =>
                 {
                     b.Navigation("Courses");
                 });

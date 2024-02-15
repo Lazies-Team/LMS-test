@@ -6,46 +6,46 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories.Courses
 {
-    public class SpecialtyRepository : ISpecialtyRepository
+    public class SpecialityRepository : ISpecialityRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public SpecialtyRepository(ApplicationDbContext context)
+        public SpecialityRepository(ApplicationDbContext context)
             => _context = context;
 
-        public async ValueTask<Specialty> DeleteAsync(long id)
+        public async ValueTask<Speciality> DeleteAsync(long id)
         {
-            Specialty? specialty = await _context.Specialties
+            Speciality? specialty = await _context.Specialities
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (specialty == null)
                 throw new SpecialtyNotFound();
 
-            var entry = _context.Specialties.Remove(specialty);
+            var entry = _context.Specialities.Remove(specialty);
             await _context.SaveChangesAsync();
 
             return entry.Entity;
         }
 
-        public async ValueTask<Specialty> InsertAsync(Specialty entity)
+        public async ValueTask<Speciality> InsertAsync(Speciality entity)
         {
-            var entry = await _context.Specialties.AddAsync(entity);
+            var entry = await _context.Specialities.AddAsync(entity);
             await _context.SaveChangesAsync();
 
             return entry.Entity;
         }
 
-        public IQueryable<Specialty> SelectAll()
+        public IQueryable<Speciality> SelectAll()
         {
-            IQueryable<Specialty> specialties = _context.Specialties.AsNoTracking();
+            IQueryable<Speciality> specialties = _context.Specialities.AsNoTracking();
 
             return specialties;
         }
 
-        public async ValueTask<Specialty> SelectByIdAsync(long id)
+        public async ValueTask<Speciality> SelectByIdAsync(long id)
         {
-            Specialty? specialty = await _context.Specialties
+            Speciality? specialty = await _context.Specialities
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
@@ -55,9 +55,9 @@ namespace Infrastructure.Repositories.Courses
             return specialty;
         }
 
-        public async ValueTask<Specialty> UpdateAsync(Specialty entity)
+        public async ValueTask<Speciality> UpdateAsync(Speciality entity)
         {
-            Specialty? specialty = await _context.Specialties
+            Speciality? specialty = await _context.Specialities
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == entity.Id);
 
@@ -65,7 +65,7 @@ namespace Infrastructure.Repositories.Courses
                 throw new SpecialtyNotFound();
 
             specialty = entity.Adapt(specialty);
-            var entry = _context.Specialties.Update(specialty);
+            var entry = _context.Specialities.Update(specialty);
             await _context.SaveChangesAsync();
 
             return entry.Entity;

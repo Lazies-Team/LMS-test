@@ -2,7 +2,6 @@ using Domain.Entities.Users;
 using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Text.RegularExpressions;
 
 namespace Infrastructure.Configurations
 {
@@ -15,12 +14,6 @@ namespace Infrastructure.Configurations
 
             builder.Property(u => u.IsBlocked)
                 .HasDefaultValue(false);
-
-            builder.Property(u => u.CreatedAt)
-                .HasDefaultValue(DateTime.Now);
-
-            builder.Property(u => u.UpdatedAt)
-                .HasDefaultValue(DateTime.Now);
 
             builder.HasData(
             new User
