@@ -1,5 +1,6 @@
 using Application;
 using Infrastructure;
+using Presentation.Middlewares;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthorization();
+app.UseAuthentication();
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();
