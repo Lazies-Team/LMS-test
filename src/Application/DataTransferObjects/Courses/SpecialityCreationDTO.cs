@@ -1,6 +1,6 @@
 ﻿namespace Application.DataTransferObjects.Courses
 {
-    public record SpecialtyCreationDTO
+    public record SpecialityCreationDTO
     (
         string Name
     );

@@ -14,12 +14,6 @@ namespace Infrastructure.Configurations
                 .HasMaxLength(20)
                 .IsRequired();
 
-            builder.Property(x => x.CreatedAt)
-                .HasDefaultValue(DateTime.Now);
-
-            builder.Property(x => x.UpdatedAt)
-                .HasDefaultValue(DateTime.Now);
-
             builder.HasData(
                 new List<Role>{
                     new Role()

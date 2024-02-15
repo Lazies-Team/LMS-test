@@ -11,7 +11,7 @@ namespace Application.ViewModel
         DateOnly StartAt,
         DateOnly EndAt,
 
-        Specialty Specialty,
+        Speciality Specialty,
         ICollection<LessonViewModel> Lessons,
         ICollection<TeacherViewModel> Teachers,
         ICollection<StudentViewModel> Students

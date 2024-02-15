@@ -23,8 +23,8 @@ namespace Infrastructure
         public DbSet<Admin> Admins { get; set; }
 
         //course
-        public DbSet<Course> Course { get; set; }
-        public DbSet<Specialty> Specialties { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Speciality> Specialities { get; set; }
 
         //homework
         public DbSet<Homework> Homeworks { get; set; }

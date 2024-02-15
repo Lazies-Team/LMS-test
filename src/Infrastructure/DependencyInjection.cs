@@ -24,7 +24,7 @@ namespace Infrastructure
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+            services.AddScoped<ISpecialityRepository, SpecialityRepository>();
 
             //courses
             services.AddScoped<ICourseRepository, CourseRepository>();

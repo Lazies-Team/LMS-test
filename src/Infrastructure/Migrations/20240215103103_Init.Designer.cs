@@ -4,6 +4,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240215103103_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -629,7 +632,7 @@ namespace Infrastructure.Migrations
                             PhoneNumber = "+998950940303",
                             ProfilePhotoPath = "profile_photo/murodovich.png",
                             RefreshToken = "bir nima",
-                            RefreshTokenExpireDate = new DateTime(2024, 2, 16, 16, 14, 36, 49, DateTimeKind.Local).AddTicks(207),
+                            RefreshTokenExpireDate = new DateTime(2024, 2, 16, 15, 31, 2, 712, DateTimeKind.Local).AddTicks(1190),
                             RoleId = 3L,
                             Salt = "sarvar",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)

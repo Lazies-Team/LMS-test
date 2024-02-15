@@ -2,7 +2,7 @@
 
 namespace Application.ViewModel
 {
-    public record SpecialtyViewModel
+    public record SpecialityViewModel
     (
         long id,
         string Name,
