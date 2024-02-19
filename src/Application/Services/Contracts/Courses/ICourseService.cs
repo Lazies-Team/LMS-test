@@ -1,5 +1,5 @@
 ﻿using Application.DataTransferObjects.Courses;
-using Application.ViewModel;
+using Application.ViewModel.Courses;
 
 namespace Application.Services.Contracts.Courses
 {
