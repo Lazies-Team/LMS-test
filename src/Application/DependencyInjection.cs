@@ -29,6 +29,7 @@ namespace Application
 
             //homeworks
             services.AddScoped<IHomeworkService,HomeworkService>();
+            services.AddScoped<IHomeworkFileService, HomeworkFileService>();
 
             return services;
         }
