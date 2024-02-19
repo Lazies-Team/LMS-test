@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Homeworks;
 using Application.DataTransferObjects.HomeWorks;
 using Application.Services.Contracts.Homeworks;
-using Application.ViewModel;
+using Application.ViewModel.Homeworks;
 using Domain.Entities.Homeworks;
 using Domain.Exceptions.HomeWork;
 using Mapster;
