@@ -33,6 +33,7 @@ namespace Infrastructure
 
             //homeworks
             services.AddScoped<IHomeworkRepository, HomeworkRepository>();
+            services.AddScoped<IHomeworkFileRepository, HomeworkFileRepository>();
 
             return services;
         }
