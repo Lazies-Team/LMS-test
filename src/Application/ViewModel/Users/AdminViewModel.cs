@@ -1,4 +1,4 @@
-﻿namespace Application.ViewModel
+﻿namespace Application.ViewModel.Users
 {
     public record AdminViewModel(
         long Id,

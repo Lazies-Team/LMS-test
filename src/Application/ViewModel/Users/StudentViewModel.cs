@@ -1,7 +1,7 @@
 ﻿using Domain.Entities.Courses;
 using Domain.Entities.Tasks;
 
-namespace Application.ViewModel
+namespace Application.ViewModel.Users
 {
     public record StudentViewModel(
         long Id,

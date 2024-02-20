@@ -1,7 +1,9 @@
 ﻿using Application.Halpers.Hasher;
 using Application.Services.Contracts.Courses;
+using Application.Services.Contracts.Homeworks;
 using Application.Services.Contracts.Users;
 using Application.Services.Courses;
+using Application.Services.Homeworks;
 using Application.Services.Users;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,10 +22,14 @@ namespace Application
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IStudentService, StudentService>();
             services.AddScoped<ITeacherService, TeacherService>();
-            services.AddScoped<ISpecialityService, SpecialityService>();
 
             //courses
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ISpecialityService, SpecialityService>();
+
+            //homeworks
+            services.AddScoped<IHomeworkService,HomeworkService>();
+            services.AddScoped<IHomeworkFileService, HomeworkFileService>();
 
             return services;
         }

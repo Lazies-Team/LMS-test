@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Courses;
 using Application.DataTransferObjects.Courses;
 using Application.Services.Contracts.Courses;
-using Application.ViewModel;
+using Application.ViewModel.Courses;
 using Domain.Entities.Courses;
 using Mapster;
 

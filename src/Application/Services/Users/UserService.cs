@@ -2,7 +2,7 @@
 using Application.DataTransferObjects.Users;
 using Application.Halpers.Hasher;
 using Application.Services.Contracts.Users;
-using Application.ViewModel;
+using Application.ViewModel.Users;
 using Domain.Entities.Users;
 using Mapster;
 using Microsoft.AspNetCore.Hosting;
