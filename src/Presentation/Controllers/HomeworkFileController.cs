@@ -16,7 +16,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostHomeworkFileAsync([FromForm]HomeworkFileCreationDTO homeworkFileCreationDTO)
+        public async Task<IActionResult> PostHomeworkFileAsync([FromForm] HomeworkFileCreationDTO homeworkFileCreationDTO)
         {
             var created = await _homeworkFileService.AddAsync(homeworkFileCreationDTO);
 
@@ -47,10 +47,10 @@ namespace Presentation.Controllers
             return Ok(updatehomeworkfile);
         }
 
-        [HttpDelete("{id}")] 
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHomeworkFileAsync(long id)
         {
-            var deleted  = await _homeworkFileService.DeleteAsync(id);
+            var deleted = await _homeworkFileService.DeleteAsync(id);
 
             return Ok(deleted);
         }
