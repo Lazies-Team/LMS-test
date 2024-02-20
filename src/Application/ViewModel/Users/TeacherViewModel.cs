@@ -1,5 +1,4 @@
 ﻿using Domain.Entities.Courses;
-using Domain.Entities.Users;
 
 namespace Application.ViewModel.Users
 {
