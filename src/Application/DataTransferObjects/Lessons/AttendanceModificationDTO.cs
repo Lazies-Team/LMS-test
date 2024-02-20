@@ -2,7 +2,7 @@
 
 namespace Application.DataTransferObjects.Lessons
 {
-    public record AttandanceCreationDTO
+    public record AttendanceModificationDTO
     (
         long LessonId,
         long StudentId,
