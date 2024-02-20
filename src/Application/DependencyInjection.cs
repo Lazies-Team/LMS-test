@@ -35,6 +35,8 @@ namespace Application
 
             //Lessons
             services.AddScoped<ILessonService, LessonService>();
+            services.AddScoped<IAttendanceService, AttendanceService>();
+
             return services;
         }
     }
