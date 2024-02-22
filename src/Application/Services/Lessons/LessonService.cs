@@ -17,44 +17,44 @@ namespace Application.Services.Lessons
         public async ValueTask<LessonViewModel> AddAsync(LessonCreationDTO lessonCreationDTO)
         {
             var lesson = lessonCreationDTO.Adapt<Lesson>();
-            var created = await _lessonRepository.InsertAsync(lesson);
-            var result = created.Adapt<LessonViewModel>();
+            var result = await _lessonRepository.InsertAsync(lesson);
+            var lessonViewModel = result.Adapt<LessonViewModel>();
 
-            return result;
+            return lessonViewModel;
         }
 
         public async ValueTask<LessonViewModel> DeleteAsync(long id)
         {
-            var lesson = await _lessonRepository.DeleteAsync(id);
-            var deleted = lesson.Adapt<LessonViewModel>();
+            var result = await _lessonRepository.DeleteAsync(id);
+            var lessonViewModel = result.Adapt<LessonViewModel>();
 
-            return deleted;
+            return lessonViewModel;
         }
 
         public async ValueTask<List<LessonViewModel>> GetAllAsync()
         {
-            var lesson = _lessonRepository.SelectAll();
-            var lessons = lesson.ToList().Adapt<List<LessonViewModel>>();
+            var result = _lessonRepository.SelectAll();
+            var lessons = result.ToList().Adapt<List<LessonViewModel>>();
 
             return lessons;
         }
 
         public async ValueTask<LessonViewModel> GetByIdAsync(long id)
         {
-            var lesson = await _lessonRepository.SelectByIdAsync(id);
-            var result = lesson.Adapt<LessonViewModel>();
+            var result = await _lessonRepository.SelectByIdAsync(id);
+            var lessonViewModel = result.Adapt<LessonViewModel>();
 
-            return result;
+            return lessonViewModel;
         }
 
         public async ValueTask<LessonViewModel> UpdateAsync(LessonModificationDTO lessonModificationDTO, long id)
         {
             var lesson = lessonModificationDTO.Adapt<Lesson>();
             lesson.Id = id;
-            var update = await _lessonRepository.UpdateAsync(lesson);
-            var result = update.Adapt<LessonViewModel>();
+            var result = await _lessonRepository.UpdateAsync(lesson);
+            var lessonViewModel = result.Adapt<LessonViewModel>();
 
-            return result;
+            return lessonViewModel;
         }
     }
 }

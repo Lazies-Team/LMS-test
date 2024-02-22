@@ -11,48 +11,46 @@ namespace Presentation.Controllers
         private readonly IHomeworkService _homeworkService;
 
         public HomeworkController(IHomeworkService homeworkService)
-        {
-            _homeworkService = homeworkService;
-        }
+            => _homeworkService = homeworkService;
 
         [HttpPost]
         public async Task<IActionResult> PostHomeworkAsync(HomeworkCreationDTO homeworkCreationDTO)
         {
-            var created = await _homeworkService.AddAsync(homeworkCreationDTO);
+            var homework = await _homeworkService.AddAsync(homeworkCreationDTO);
 
-            return Ok(created);
+            return Ok(homework);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllHomeworkAsync()
         {
-            var getallhomework = await _homeworkService.GetAllAsync();
+            var homeworks = await _homeworkService.GetAllAsync();
 
-            return Ok(getallhomework);
+            return Ok(homework);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdHomeworkAsync(long Id)
         {
-            var getByIdHomework = await _homeworkService.GetByIdAsync(Id);
+            var homework = await _homeworkService.GetByIdAsync(Id);
 
-            return Ok(getByIdHomework);
+            return Ok(homework);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateHomeworkAsync(HomeworkModificationDTO homeworkModificationDTO, long Id)
         {
-            var updatedhomework = await _homeworkService.UpdateAsync(homeworkModificationDTO, Id);
+            var homework = await _homeworkService.UpdateAsync(homeworkModificationDTO, Id);
 
-            return Ok(updatedhomework);
+            return Ok(homework);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHomeworkAsync(long Id)
         {
-            var deletedHomework = await _homeworkService.DeleteAsync(Id);
+            var homework = await _homeworkService.DeleteAsync(Id);
 
-            return Ok(deletedHomework);
+            return Ok(homework);
         }
     }
 }

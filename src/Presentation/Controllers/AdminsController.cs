@@ -11,9 +11,7 @@ namespace Presentation.Controllers
         private readonly IAdminService _adminService;
 
         public AdminsController(IAdminService adminService)
-        {
-            _adminService = adminService;
-        }
+            => _adminService = adminService;
 
         [HttpGet]
         public async Task<IActionResult> GetAllAdminsAsync()
