@@ -17,44 +17,44 @@ namespace Application.Services.Homeworks
         public async ValueTask<HomeworkViewModel> AddAsync(HomeworkCreationDTO homeworkCreationDTO)
         {
             var homework = homeworkCreationDTO.Adapt<Homework>();
-            var result =  await _homeworkRepository.InsertAsync(homework);
-            var homeworkViewModel = result.Adapt<HomeworkViewModel>();
-            
+            var created = await _homeworkRepository.InsertAsync(homework);
+            var homeworkViewModel = created.Adapt<HomeworkViewModel>();
+
             return homeworkViewModel;
         }
 
         public async ValueTask<List<HomeworkViewModel>> GetAllAsync()
         {
-            var result = _homeworkRepository.SelectAll();
-            var homeworklist = result.ToList().Adapt<List<HomeworkViewModel>>();
+            var homeworks = _homeworkRepository.SelectAll();
+            var homeworklist = homeworks.ToList().Adapt<List<HomeworkViewModel>>();
 
             return homeworklist;
         }
 
         public async ValueTask<HomeworkViewModel> GetByIdAsync(long id)
         {
-            var result = await _homeworkRepository.SelectByIdAsync(id);
-            var homeworkViewModel = result.Adapt<HomeworkViewModel>();
+            var homework = await _homeworkRepository.SelectByIdAsync(id);
+            var homeworkviewmodel = homework.Adapt<HomeworkViewModel>();
 
-            return homeworkViewModel;
+            return homeworkviewmodel;
         }
 
         public async ValueTask<HomeworkViewModel> UpdateAsync(HomeworkModificationDTO homeworkModificationDTO, long id)
         {
             var homework = homeworkModificationDTO.Adapt<Homework>();
             homework.Id = id;
-            var result = await _homeworkRepository.UpdateAsync(homework);
-            var homeworkViewModel = result.Adapt<HomeworkViewModel>();
+            var updated = await _homeworkRepository.UpdateAsync(homework);
+            var result = updated.Adapt<HomeworkViewModel>();
 
-            return homeworkViewModel;
+            return result;
         }
 
         public async ValueTask<HomeworkViewModel> DeleteAsync(long id)
         {
-            var result = await _homeworkRepository.DeleteAsync(id);
-            var homeworkViewModel = result.Adapt<HomeworkViewModel>();
+            var deleted = _homeworkRepository.DeleteAsync(id);
+            var homework = deleted.Adapt<HomeworkViewModel>();
 
-            return homeworkViewModel;
+            return homework;
         }
     }
 }
