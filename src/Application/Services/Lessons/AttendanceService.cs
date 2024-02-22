@@ -17,8 +17,8 @@ namespace Application.Services.Lessons
         public async ValueTask<AttendanceViewModel> AddAsync(AttendanceCreationDTO attendanceCreationDTO)
         {
             var attendance = attendanceCreationDTO.Adapt<Attendance>();
-            var created = await _attendanceRepository.InsertAsync(attendance);
-            var result = created.Adapt<AttendanceViewModel>();
+            var attendances = await _attendanceRepository.InsertAsync(attendance);
+            var result = attendances.Adapt<AttendanceViewModel>();
 
             return result;
         }
@@ -26,9 +26,9 @@ namespace Application.Services.Lessons
         public async ValueTask<AttendanceViewModel> DeleteAsync(long id)
         {
             var attendance = await _attendanceRepository.DeleteAsync(id);
-            var deleted = attendance.Adapt<AttendanceViewModel>();
+            var attendanceviewmodel = attendance.Adapt<AttendanceViewModel>();
 
-            return deleted;
+            return attendanceviewmodel;
         }
 
         public async ValueTask<List<AttendanceViewModel>> GetAllAsync()
@@ -51,8 +51,8 @@ namespace Application.Services.Lessons
         {
             var attendance = attendanceModificationDTO.Adapt<Attendance>();
             attendance.Id = id;
-            var update = await _attendanceRepository.UpdateAsync(attendance);
-            var result = update.Adapt<AttendanceViewModel>();
+            var attendances = await _attendanceRepository.UpdateAsync(attendance);
+            var result = attendances.Adapt<AttendanceViewModel>();
 
             return result;
         }
