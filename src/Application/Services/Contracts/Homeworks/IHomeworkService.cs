@@ -1,5 +1,4 @@
-﻿using Application.DataTransferObjects.Courses;
-using Application.DataTransferObjects.HomeWorks;
+﻿using Application.DataTransferObjects.HomeWorks;
 using Application.ViewModel.Homeworks;
 
 namespace Application.Services.Contracts.Homeworks

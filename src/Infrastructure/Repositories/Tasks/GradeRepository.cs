@@ -47,7 +47,7 @@ namespace Infrastructure.Repositories.Tasks
         {
             var grade = await _context.Grades
                 .AsNoTracking()
-                .FirstOrDefaultAsync (x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (grade == null)
                 throw new GradeNotFound();

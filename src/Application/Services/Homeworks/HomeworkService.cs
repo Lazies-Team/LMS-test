@@ -1,15 +1,9 @@
-﻿using Application.Abstractions.Homeworks;
+using Application.Abstractions.Homeworks;
 using Application.DataTransferObjects.HomeWorks;
 using Application.Services.Contracts.Homeworks;
 using Application.ViewModel.Homeworks;
 using Domain.Entities.Homeworks;
-using Domain.Exceptions.HomeWork;
 using Mapster;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services.Homeworks
 {
@@ -18,14 +12,14 @@ namespace Application.Services.Homeworks
         private readonly IHomeworkRepository _homeworkRepository;
 
         public HomeworkService(IHomeworkRepository homeworkRepository)
-            => _homeworkRepository = homeworkRepository;      
+            => _homeworkRepository = homeworkRepository;
 
         public async ValueTask<HomeworkViewModel> AddAsync(HomeworkCreationDTO homeworkCreationDTO)
         {
             var homework = homeworkCreationDTO.Adapt<Homework>();
             var result =  await _homeworkRepository.InsertAsync(homework);
             var homeworkViewModel = result.Adapt<HomeworkViewModel>();
-
+            
             return homeworkViewModel;
         }
 

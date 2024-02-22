@@ -12,7 +12,7 @@ namespace Application.Services.Users
         private readonly ITeacherRepository _teacherRepository;
 
         public TeacherService(ITeacherRepository teacherRepository)
-            => _teacherRepository = teacherRepository;        
+            => _teacherRepository = teacherRepository;
 
 
         public async ValueTask<List<TeacherViewModel>> GetAllAsync()
@@ -24,7 +24,7 @@ namespace Application.Services.Users
         }
 
         public async ValueTask<TeacherViewModel> GetByIdAsync(long id)
-        {   
+        {
             var result = await _teacherRepository.SelectByIdAsync(id);
             var teacherViewModel = result.Adapt<TeacherViewModel>();
 
@@ -36,7 +36,7 @@ namespace Application.Services.Users
             var teacher = teacherModificationDTO.Adapt<Teacher>();
             teacher.Id = id;
             var result = await _teacherRepository.UpdateAsync(teacher);
-            var teacherViewModel = result.Adapt<TeacherViewModel>(); 
+            var teacherViewModel = result.Adapt<TeacherViewModel>();
 
             return teacherViewModel;
         }

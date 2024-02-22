@@ -43,7 +43,7 @@ namespace Application.Services.Homeworks
         {
             var homeworkfile = homeworkFileModificationDTO.Adapt<HomeworkFile>();
             homeworkfile.Id = id;
-            var updated =  _repository.UpdateAsync(homeworkfile);
+            var updated = _repository.UpdateAsync(homeworkfile);
             var result = updated.Adapt<HomeworkFileViewModel>();
 
             return result;
