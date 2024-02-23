@@ -44,6 +44,7 @@ namespace Infrastructure
 
             //relations
             services.AddScoped<ICourseTeacherRepository, CourseTeacherRepository>();
+
             return services;
         }
     }
