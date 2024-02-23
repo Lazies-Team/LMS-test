@@ -10,7 +10,7 @@ namespace Application.ViewModel
         TimeOnly LessonEndAt,
         DateOnly StartAt,
         DateOnly EndAt,
-
+            
         Speciality Specialty,
         ICollection<LessonViewModel> Lessons,
         ICollection<TeacherViewModel> Teachers,
