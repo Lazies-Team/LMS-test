@@ -10,7 +10,7 @@ namespace Domain.Entities.Users
         public long UserId { get; set; }
 
         public virtual User User { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<CourseStudent> CourseStudents { get; set; }
         public virtual ICollection<TaskResult> TaskResults { get; set; }
     }
 }
