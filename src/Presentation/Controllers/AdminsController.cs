@@ -11,9 +11,7 @@ namespace Presentation.Controllers
         private readonly IAdminService _adminService;
 
         public AdminsController(IAdminService adminService)
-        {
-            _adminService = adminService;
-        }
+            => _adminService = adminService;
 
         [HttpGet]
         public async Task<IActionResult> GetAllAdminsAsync()
@@ -31,7 +29,7 @@ namespace Presentation.Controllers
             return Ok(admin);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAdminAsync(AdminModificationDTO adminModificationDTO, long id)
         {
             var admin = await _adminService.UpdateAsync(adminModificationDTO, id);
@@ -39,7 +37,7 @@ namespace Presentation.Controllers
             return Ok(admin);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAdminAsync(long id)
         {
             var admin = await _adminService.DeleteAsync(id);

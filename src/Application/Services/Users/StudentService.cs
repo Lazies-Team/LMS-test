@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Users;
 using Application.DataTransferObjects.Users;
 using Application.Services.Contracts.Users;
-using Application.ViewModel;
+using Application.ViewModel.Users;
 using Domain.Entities.Users;
 using Mapster;
 

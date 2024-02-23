@@ -3,6 +3,6 @@
 namespace Application.Abstractions.Tasks
 {
     public interface IGradeRepository : IGenericRepository<Grade>
-    { 
+    {
     }
 }

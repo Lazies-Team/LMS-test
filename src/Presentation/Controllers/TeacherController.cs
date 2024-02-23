@@ -20,6 +20,7 @@ namespace Presentation.Controllers
 
             return Ok(teachers);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdTeacherAsync(long id)
         {
@@ -27,6 +28,7 @@ namespace Presentation.Controllers
 
             return Ok(teacher);
         }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTeacherAsync(TeacherModificationDTO teacherModificationDTO, long id)
         {
@@ -34,6 +36,7 @@ namespace Presentation.Controllers
 
             return Ok(teacher);
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeacherAsync(long id)
         {

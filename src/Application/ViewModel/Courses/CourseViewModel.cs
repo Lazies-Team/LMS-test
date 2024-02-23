@@ -1,6 +1,8 @@
-﻿using Domain.Entities.Courses;
+﻿using Application.ViewModel.Lessons;
+using Application.ViewModel.Users;
+using Domain.Entities.Courses;
 
-namespace Application.ViewModel
+namespace Application.ViewModel.Courses
 {
     public record CourseViewModel(
         long Id,
