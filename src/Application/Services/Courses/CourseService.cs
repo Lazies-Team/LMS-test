@@ -1,8 +1,10 @@
-﻿using Application.Abstractions.Courses;
+using Application.Abstractions;
+using Application.Abstractions.Courses;
 using Application.Abstractions.Users;
 using Application.DataTransferObjects.Courses;
 using Application.Services.Contracts.Courses;
-using Application.ViewModel.Courses;
+using Application.ViewModel;
+using Domain.Entities;
 using Domain.Entities.Courses;
 using Domain.Entities.Users;
 using Mapster;
@@ -13,24 +15,34 @@ namespace Application.Services.Courses
     {
         private readonly ICourseRepository _courseRepository;
         private readonly ITeacherRepository _teacherRepository;
+        private readonly ICourseTeacherRepository _courseTeacherRepository;
 
-        public CourseService(ICourseRepository courseRepository, ITeacherRepository teacherRepository)
+        public CourseService(
+            ICourseRepository courseRepository,
+            ITeacherRepository teacherRepository,
+            ICourseTeacherRepository courseTeacherRepository)
         {
             _courseRepository = courseRepository;
             _teacherRepository = teacherRepository;
+            _courseTeacherRepository = courseTeacherRepository;
         }
 
         public async ValueTask<CourseViewModel> AddAsync(CourseCreationDTO courseCreationDTO)
         {
             var course = courseCreationDTO.Adapt<Course>();
             var teachers = new List<Teacher>();
+            var result = await _courseRepository.InsertAsync(course);
+
             foreach (var id in courseCreationDTO.Teachers)
             {
-                teachers.Add(await _teacherRepository.SelectByIdAsync(id));
+                var courseTeacher = new CourseTeacher()
+                {
+                    CourseId = result.Id,
+                    TeacherId = id
+                };
+                await _courseTeacherRepository.InsertAsync(courseTeacher);
             }
-            course.Teachers = teachers;
 
-            var result = await _courseRepository.InsertAsync(course);
             var courseViewModel = result.Adapt<CourseViewModel>();
 
             return courseViewModel;
