@@ -20,9 +20,9 @@ namespace Application.Services.Lessons
             _attendanceRepository = attendanceRepository;
         }
 
-        public async ValueTask<AttendanceViewModel> CreateAsync(AttandanceCreationDTO attendanceCreationDTO)
+        public async ValueTask<AttendanceViewModel> AddAsync(AttandanceCreationDTO attandanceCreationDTO)
         {
-            var attendance = attendanceCreationDTO.Adapt<Attendance>();
+            var attendance = attandanceCreationDTO.Adapt<Attendance>();
             var result = await _attendanceRepository.InsertAsync(attendance);
             var attendanceViewModel = result.Adapt<AttendanceViewModel>();
 
