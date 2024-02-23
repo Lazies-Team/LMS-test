@@ -36,6 +36,7 @@ namespace Presentation.Controllers
 
             return Ok(result);
         }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateSpecialtyAsync(SpecialityModificationDTO specialtyModificationDTO, long id)
         {

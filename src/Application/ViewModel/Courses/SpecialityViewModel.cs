@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Courses;
 
-namespace Application.ViewModel
+namespace Application.ViewModel.Courses
 {
     public record SpecialityViewModel
     (
@@ -10,5 +10,5 @@ namespace Application.ViewModel
         DateTime UpdatedAt,
         ICollection<Course> Courses
     );
-    
+
 }

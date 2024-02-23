@@ -1,7 +1,6 @@
 ﻿using Domain.Entities.Courses;
-using Domain.Entities.Users;
 
-namespace Application.ViewModel
+namespace Application.ViewModel.Users
 {
     public record TeacherViewModel
     (

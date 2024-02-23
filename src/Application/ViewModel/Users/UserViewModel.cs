@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
 
-namespace Application.ViewModel
+namespace Application.ViewModel.Users
 {
     public record UserViewModel(
         long Id,
@@ -18,5 +18,5 @@ namespace Application.ViewModel
         StudentViewModel Student,
         TeacherViewModel Teacher
     );
-        
+
 }
