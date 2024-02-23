@@ -1,4 +1,6 @@
-﻿using Domain.Enums;
+﻿using Application.ViewModel.Lessons;
+using Application.ViewModel.Users;
+using Domain.Enums;
 
 namespace Application.ViewModel
 {
