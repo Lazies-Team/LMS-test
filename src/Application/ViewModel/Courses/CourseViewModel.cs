@@ -1,4 +1,4 @@
-﻿using Application.ViewModel.Lessons;
+using Application.ViewModel.Lessons;
 using Application.ViewModel.Users;
 using Domain.Entities.Courses;
 
@@ -12,7 +12,6 @@ namespace Application.ViewModel.Courses
         TimeOnly LessonEndAt,
         DateOnly StartAt,
         DateOnly EndAt,
-
         Speciality Specialty,
         ICollection<LessonViewModel> Lessons,
         ICollection<TeacherViewModel> Teachers,

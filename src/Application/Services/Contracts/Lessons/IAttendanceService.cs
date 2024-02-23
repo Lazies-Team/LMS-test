@@ -1,4 +1,4 @@
-﻿using Application.DataTransferObjects.Lessons;
+using Application.DataTransferObjects.Lessons;
 using Application.ViewModel.Lessons;
 
 namespace Application.Services.Contracts.Lessons

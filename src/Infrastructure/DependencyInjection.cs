@@ -1,7 +1,9 @@
-﻿using Application.Abstractions.Courses;
+﻿using Application.Abstractions;
+using Application.Abstractions.Courses;
 using Application.Abstractions.Homeworks;
 using Application.Abstractions.Lessons;
 using Application.Abstractions.Users;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Courses;
 using Infrastructure.Repositories.Homeworks;
 using Infrastructure.Repositories.Lessons;
@@ -39,7 +41,9 @@ namespace Infrastructure
 
             //Lessons
             services.AddScoped<ILessonRepository, LessonRepository>();
-            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+
+            //relations
+            services.AddScoped<ICourseTeacherRepository, CourseTeacherRepository>();
 
             return services;
         }
