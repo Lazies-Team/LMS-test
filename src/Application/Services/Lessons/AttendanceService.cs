@@ -15,11 +15,19 @@ namespace Application.Services.Lessons
         public AttendanceService(IAttendanceRepository attendanceRepository)
             => _attendanceRepository = attendanceRepository;
 
+<<<<<<< HEAD
         public async ValueTask<AttendanceViewModel> AddAsync(AttendanceCreationDTO attendanceCreationDTO)
         {
             var attendance = attendanceCreationDTO.Adapt<Attendance>();
             var attendances = await _attendanceRepository.InsertAsync(attendance);
             var result = attendances.Adapt<AttendanceViewModel>();
+=======
+        public async ValueTask<AttendanceViewModel> CreateAsync(AttandanceCreationDTO attendanceCreationDTO)
+        {
+            var attendance = attendanceCreationDTO.Adapt<Attendance>();
+            var result = await _attendanceRepository.InsertAsync(attendance);
+            var attendanceViewModel = result.Adapt<AttendanceViewModel>();
+>>>>>>> parent of b3acdd3 (Merge pull request #97 from Lazies-Team/sardorsohinazarov/course-insertion-fixed)
 
             return result;
         }

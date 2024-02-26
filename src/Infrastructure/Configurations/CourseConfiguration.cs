@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Courses;
+﻿using Domain.Entities;
+using Domain.Entities.Courses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -13,10 +14,9 @@ namespace Infrastructure.Configurations
                 .HasForeignKey(x => x.SpecialityId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(x => x.CourseTeachers)
-                .WithOne(x => x.Course)
-                .HasForeignKey(x => x.CourseId)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.Teachers)
+                .WithMany(x => x.Courses)
+                .UsingEntity(nameof(CourseTeacher));
         }
     }
 }

@@ -58,7 +58,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseTeachers");
+                    b.ToTable("CourseTeachers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Courses.Course", b =>
@@ -83,7 +83,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<long>("SpecialityId")
                         .HasColumnType("bigint");
@@ -98,7 +99,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("SpecialityId");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Courses.Speciality", b =>
@@ -510,7 +511,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Teachers");
+                    b.ToTable("Teachers", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Users.User", b =>
@@ -599,7 +600,7 @@ namespace Infrastructure.Migrations
                             PhoneNumber = "+998950940303",
                             ProfilePhotoPath = "profile_photo/murodovich.png",
                             RefreshToken = "bir nima",
-                            RefreshTokenExpireDate = new DateTime(2024, 2, 24, 22, 45, 36, 775, DateTimeKind.Local).AddTicks(5143),
+                            RefreshTokenExpireDate = new DateTime(2024, 2, 22, 18, 4, 13, 457, DateTimeKind.Local).AddTicks(7258),
                             RoleId = 3L,
                             Salt = "sarvar",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -649,7 +650,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Courses.Speciality", "Specialty")
                         .WithMany("Courses")
                         .HasForeignKey("SpecialityId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Specialty");
