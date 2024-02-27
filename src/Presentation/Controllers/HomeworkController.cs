@@ -26,7 +26,7 @@ namespace Presentation.Controllers
         {
             var homeworks = await _homeworkService.GetAllAsync();
 
-            return Ok(homework);
+            return Ok(homeworks);
         }
 
         [HttpGet("{id}")]
