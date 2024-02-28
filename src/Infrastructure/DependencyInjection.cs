@@ -20,7 +20,8 @@ namespace Infrastructure
             IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseLazyLoadingProxies() //Lazy loading
+                options
+                //.UseLazyLoadingProxies() //Lazy loading
                 .UseSqlServer(configuration.GetConnectionString("SqlServer")));
 
             //user

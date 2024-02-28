@@ -15,7 +15,7 @@ namespace Domain.Entities.Courses
 
         public virtual Speciality Specialty { get; set; }
         public virtual ICollection<Lesson> Lessons { get; set; }
-        public virtual ICollection<CourseTeacher> CourseTeachers { get; set; }
-        public virtual ICollection<CourseStudent> CourseStudents { get; set; }
+        public virtual ICollection<Teacher> Teachers { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

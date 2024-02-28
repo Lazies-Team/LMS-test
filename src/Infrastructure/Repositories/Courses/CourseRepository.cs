@@ -38,7 +38,11 @@ namespace Infrastructure.Repositories.Courses
 
         public IQueryable<Course> SelectAll()
         {
-            var course = _context.Courses.AsNoTracking();
+            var course = _context.Courses
+                .Include(x => x.Students)
+                .Include(x => x.Teachers)
+                .Include(x => x.Specialty)
+                .AsNoTracking();
 
             return course;
         }

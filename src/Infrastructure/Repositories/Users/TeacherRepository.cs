@@ -23,7 +23,14 @@ namespace Infrastructure.Repositories.Users
 
         public IQueryable<Teacher> SelectAll()
         {
-            var teachers = _context.Teachers.AsNoTracking();
+            var teachers = _context.Teachers;
+
+            return teachers;
+        }
+
+        public IQueryable<Teacher> SelectAll(List<long> ids)
+        {
+            var teachers = _context.Teachers.Where(x => ids.Contains(x.Id));
 
             return teachers;
         }
@@ -31,7 +38,6 @@ namespace Infrastructure.Repositories.Users
         public async ValueTask<Teacher> SelectByIdAsync(long id)
         {
             var teacher = await _context.Teachers
-                .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (teacher == null)
@@ -43,7 +49,6 @@ namespace Infrastructure.Repositories.Users
         public async ValueTask<Teacher> UpdateAsync(Teacher entity)
         {
             Teacher teacher = await _context.Teachers
-                .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == entity.Id);
 
             if (teacher == null)

@@ -1,12 +1,9 @@
-using Application.Abstractions;
 using Application.Abstractions.Courses;
 using Application.Abstractions.Users;
 using Application.DataTransferObjects.Courses;
 using Application.Services.Contracts.Courses;
 using Application.ViewModel.Courses;
-using Domain.Entities;
 using Domain.Entities.Courses;
-using Domain.Entities.Users;
 using Mapster;
 
 namespace Application.Services.Courses
@@ -17,8 +14,7 @@ namespace Application.Services.Courses
         private readonly ITeacherRepository _teacherRepository;
         public CourseService(
             ICourseRepository courseRepository,
-            ITeacherRepository teacherRepository,
-            ICourseTeacherRepository courseTeacherRepository)
+            ITeacherRepository teacherRepository)
         {
             _courseRepository = courseRepository;
             _teacherRepository = teacherRepository;
@@ -27,11 +23,8 @@ namespace Application.Services.Courses
         public async ValueTask<CourseViewModel> AddAsync(CourseCreationDTO courseCreationDTO)
         {
             var course = courseCreationDTO.Adapt<Course>();
-            var teachers = new List<Teacher>();
-            foreach (var id in courseCreationDTO.Teachers)
-            {
-                teachers.Add(await _teacherRepository.SelectByIdAsync(id));
-            }
+
+            var teachers = _teacherRepository.SelectAll(courseCreationDTO.Teachers).ToList();
             course.Teachers = teachers;
 
             var result = await _courseRepository.InsertAsync(course);
