@@ -19,7 +19,8 @@ namespace Infrastructure
             IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseLazyLoadingProxies() //Lazy loading
+                options
+                //.UseLazyLoadingProxies() //Lazy loading
                 .UseSqlServer(configuration.GetConnectionString("SqlServer")));
 
             //user
@@ -39,13 +40,8 @@ namespace Infrastructure
 
             //Lessons
             services.AddScoped<ILessonRepository, LessonRepository>();
-<<<<<<< HEAD
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
 
-            //relations
-            services.AddScoped<ICourseTeacherRepository, CourseTeacherRepository>();
-
-=======
->>>>>>> parent of b3acdd3 (Merge pull request #97 from Lazies-Team/sardorsohinazarov/course-insertion-fixed)
             return services;
         }
     }

@@ -6,10 +6,10 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
+    .AddJsonOptions(o =>
     {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-        options.JsonSerializerOptions.WriteIndented = true;
+        o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        o.JsonSerializerOptions.MaxDepth = 0;
     });
 
 builder.Services.AddEndpointsApiExplorer();
