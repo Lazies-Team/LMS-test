@@ -1,4 +1,5 @@
-﻿using Application.Abstractions.Courses;
+﻿using Application.Abstractions;
+using Application.Abstractions.Courses;
 using Application.Abstractions.Homeworks;
 using Application.Abstractions.Lessons;
 using Application.Abstractions.Users;
@@ -39,13 +40,10 @@ namespace Infrastructure
 
             //Lessons
             services.AddScoped<ILessonRepository, LessonRepository>();
-<<<<<<< HEAD
 
             //relations
-            services.AddScoped<ICourseTeacherRepository, CourseTeacherRepository>();
+            services.AddScoped<ICourseTeacherRepository>();
 
-=======
->>>>>>> parent of b3acdd3 (Merge pull request #97 from Lazies-Team/sardorsohinazarov/course-insertion-fixed)
             return services;
         }
     }
