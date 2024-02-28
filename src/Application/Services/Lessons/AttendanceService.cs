@@ -3,7 +3,6 @@ using Application.DataTransferObjects.Lessons;
 using Application.Services.Contracts.Lessons;
 using Application.ViewModel.Lessons;
 using Domain.Entities.Lessons;
-using Application.ViewModel;
 using Mapster;
 
 namespace Application.Services.Lessons

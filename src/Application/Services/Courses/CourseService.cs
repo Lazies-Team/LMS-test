@@ -15,8 +15,6 @@ namespace Application.Services.Courses
     {
         private readonly ICourseRepository _courseRepository;
         private readonly ITeacherRepository _teacherRepository;
-        private readonly ICourseTeacherRepository _courseTeacherRepository;
-
         public CourseService(
             ICourseRepository courseRepository,
             ITeacherRepository teacherRepository,
@@ -24,25 +22,19 @@ namespace Application.Services.Courses
         {
             _courseRepository = courseRepository;
             _teacherRepository = teacherRepository;
-            _courseTeacherRepository = courseTeacherRepository;
         }
 
         public async ValueTask<CourseViewModel> AddAsync(CourseCreationDTO courseCreationDTO)
         {
             var course = courseCreationDTO.Adapt<Course>();
             var teachers = new List<Teacher>();
-            var result = await _courseRepository.InsertAsync(course);
-
             foreach (var id in courseCreationDTO.Teachers)
             {
-                var courseTeacher = new CourseTeacher()
-                {
-                    CourseId = result.Id,
-                    TeacherId = id
-                };
-                await _courseTeacherRepository.InsertAsync(courseTeacher);
+                teachers.Add(await _teacherRepository.SelectByIdAsync(id));
             }
+            course.Teachers = teachers;
 
+            var result = await _courseRepository.InsertAsync(course);
             var courseViewModel = result.Adapt<CourseViewModel>();
 
             return courseViewModel;
