@@ -2,7 +2,6 @@
 using Application.DataTransferObjects.Users;
 using Application.Halpers.Hasher;
 using Application.Services.Contracts.Users;
-using Application.ViewModel.Users;
 using Domain.Entities.Users;
 using Mapster;
 using Microsoft.AspNetCore.Hosting;
@@ -39,7 +38,7 @@ namespace Application.Services.Users
             _studentRepository = studentRepository;
         }
 
-        public async ValueTask<UserViewModel> AddAsync(UserCreationDTO userCreationDTO)
+        public async ValueTask<User> AddAsync(UserCreationDTO userCreationDTO)
         {
             User user = userCreationDTO.Adapt<User>();
             var salt = Guid.NewGuid().ToString();
@@ -92,36 +91,33 @@ namespace Application.Services.Users
                 await _adminRepository.InsertAsync(admin);
             }
 
-            UserViewModel userViewModel = result.Adapt<UserViewModel>();
+            User User = result.Adapt<User>();
 
-            return userViewModel;
+            return User;
         }
 
-        public async ValueTask<UserViewModel> DeleteAsync(long id)
+        public async ValueTask<User> DeleteAsync(long id)
         {
             var result = await _userRepository.DeleteAsync(id);
-            UserViewModel userViewModel = result.Adapt<UserViewModel>();
 
-            return userViewModel;
+            return result;
         }
 
-        public async ValueTask<List<UserViewModel>> GetAllAsync()
+        public async ValueTask<List<User>> GetAllAsync()
         {
-            var result = _userRepository.SelectAll();
-            var userViewModels = result.ToList().Adapt<List<UserViewModel>>();
+            var result = _userRepository.SelectAll().ToList();
 
-            return userViewModels;
+            return result;
         }
 
-        public async ValueTask<UserViewModel> GetByIdAsync(long id)
+        public async ValueTask<User> GetByIdAsync(long id)
         {
             var result = await _userRepository.SelectByIdAsync(id);
-            var userViewModel = result.Adapt<UserViewModel>();
 
-            return userViewModel;
+            return result;
         }
 
-        public async ValueTask<UserViewModel> UpdateAsync(UserModificationDTO userModificationDTO, long id)
+        public async ValueTask<User> UpdateAsync(UserModificationDTO userModificationDTO, long id)
         {
             var user = userModificationDTO.Adapt<User>();
             user.Id = id;
@@ -133,9 +129,8 @@ namespace Application.Services.Users
             }
 
             var result = await _userRepository.UpdateAsync(user);
-            var userViewModel = result.Adapt<UserViewModel>();
 
-            return userViewModel;
+            return result;
         }
 
         private async Task<string> SavePhotoFile(IFormFile profilePhoto)

@@ -1,7 +1,6 @@
 using Application.Abstractions.Lessons;
 using Application.DataTransferObjects.Lessons;
 using Application.Services.Contracts.Lessons;
-using Application.ViewModel.Lessons;
 using Domain.Entities.Lessons;
 using Mapster;
 
@@ -14,47 +13,43 @@ namespace Application.Services.Lessons
         public AttendanceService(IAttendanceRepository attendanceRepository)
             => _attendanceRepository = attendanceRepository;
 
-        public async ValueTask<AttendanceViewModel> AddAsync(AttendanceCreationDTO attendanceCreationDTO)
+        public async ValueTask<Attendance> AddAsync(AttendanceCreationDTO attendanceCreationDTO)
         {
             var attendance = attendanceCreationDTO.Adapt<Attendance>();
             var attendances = await _attendanceRepository.InsertAsync(attendance);
-            var result = attendances.Adapt<AttendanceViewModel>();
 
-            return result;
+            return attendances;
         }
 
-        public async ValueTask<AttendanceViewModel> DeleteAsync(long id)
+        public async ValueTask<Attendance> DeleteAsync(long id)
         {
             var attendance = await _attendanceRepository.DeleteAsync(id);
-            var attendanceviewmodel = attendance.Adapt<AttendanceViewModel>();
 
-            return attendanceviewmodel;
+            return attendance;
         }
 
-        public async ValueTask<List<AttendanceViewModel>> GetAllAsync()
+        public async ValueTask<List<Attendance>> GetAllAsync()
         {
-            var attendance = _attendanceRepository.SelectAll();
-            var attendaces = attendance.ToList().Adapt<List<AttendanceViewModel>>();
+            var attendances = _attendanceRepository.SelectAll().ToList();
 
-            return attendaces;
+            return attendances;
         }
 
-        public async ValueTask<AttendanceViewModel> GetByIdAsync(long id)
+        public async ValueTask<Attendance> GetByIdAsync(long id)
         {
             var attendance = await _attendanceRepository.SelectByIdAsync(id);
-            var result = attendance.Adapt<AttendanceViewModel>();
 
-            return result;
+            return attendance;
         }
 
-        public async ValueTask<AttendanceViewModel> UpdateAsync(AttendanceModificationDTO attendanceModificationDTO, long id)
+        public async ValueTask<Attendance> UpdateAsync(AttendanceModificationDTO attendanceModificationDTO, long id)
         {
             var attendance = attendanceModificationDTO.Adapt<Attendance>();
             attendance.Id = id;
-            var attendances = await _attendanceRepository.UpdateAsync(attendance);
-            var result = attendances.Adapt<AttendanceViewModel>();
 
-            return result;
+            var updated = await _attendanceRepository.UpdateAsync(attendance);
+
+            return updated;
         }
     }
 }

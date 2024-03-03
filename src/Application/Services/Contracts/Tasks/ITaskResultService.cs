@@ -1,9 +1,9 @@
-using Application.DataTransferObjects.Lessons;
+﻿using Application.DataTransferObjects.Lessons;
 using Domain.Entities.Lessons;
 
-namespace Application.Services.Contracts.Lessons
+namespace Application.Services.Contracts.Tasks
 {
-    public interface IAttendanceService
+    public interface ITaskResultService
     {
         ValueTask<Attendance> AddAsync(AttendanceCreationDTO attendanceCreationDTO);
         ValueTask<List<Attendance>> GetAllAsync();

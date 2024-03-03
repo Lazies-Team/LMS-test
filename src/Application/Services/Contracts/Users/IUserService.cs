@@ -1,14 +1,14 @@
 ﻿using Application.DataTransferObjects.Users;
-using Application.ViewModel.Users;
 
+using Domain.Entities.Users;
 namespace Application.Services.Contracts.Users
 {
     public interface IUserService
     {
-        ValueTask<UserViewModel> AddAsync(UserCreationDTO userCreationDTO);
-        ValueTask<List<UserViewModel>> GetAllAsync();
-        ValueTask<UserViewModel> GetByIdAsync(long id);
-        ValueTask<UserViewModel> UpdateAsync(UserModificationDTO userModificationDTO, long id);
-        ValueTask<UserViewModel> DeleteAsync(long id);
+        ValueTask<User> AddAsync(UserCreationDTO userCreationDTO);
+        ValueTask<List<User>> GetAllAsync();
+        ValueTask<User> GetByIdAsync(long id);
+        ValueTask<User> UpdateAsync(UserModificationDTO userModificationDTO, long id);
+        ValueTask<User> DeleteAsync(long id);
     }
 }

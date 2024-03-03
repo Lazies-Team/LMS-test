@@ -1,13 +1,13 @@
 ﻿using Application.DataTransferObjects.Users;
-using Application.ViewModel.Users;
+using Domain.Entities.Users;
 
 namespace Application.Services.Contracts.Users
 {
     public interface IAdminService
     {
-        ValueTask<List<AdminViewModel>> GetAllAsync();
-        ValueTask<AdminViewModel> GetByIdAsync(long id);
-        ValueTask<AdminViewModel> UpdateAsync(AdminModificationDTO adminModificationDTO, long id);
-        ValueTask<AdminViewModel> DeleteAsync(long id);
+        ValueTask<List<Admin>> GetAllAsync();
+        ValueTask<Admin> GetByIdAsync(long id);
+        ValueTask<Admin> UpdateAsync(AdminModificationDTO adminModificationDTO, long id);
+        ValueTask<Admin> DeleteAsync(long id);
     }
 }

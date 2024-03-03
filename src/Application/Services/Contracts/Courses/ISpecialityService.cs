@@ -1,14 +1,14 @@
 ﻿using Application.DataTransferObjects.Courses;
-using Application.ViewModel.Courses;
+using Domain.Entities.Courses;
 
 namespace Application.Services.Contracts.Courses
 {
     public interface ISpecialityService
     {
-        ValueTask<SpecialityViewModel> AddAsync(SpecialityCreationDTO specialtyCreationDTO);
-        ValueTask<List<SpecialityViewModel>> GetAllAsync();
-        ValueTask<SpecialityViewModel> GetByIdAsync(long id);
-        ValueTask<SpecialityViewModel> UpdateAsync(SpecialityModificationDTO specialtyModificationDTO, long id);
-        ValueTask<SpecialityViewModel> DeleteAsync(long id);
+        ValueTask<Speciality> AddAsync(SpecialityCreationDTO specialtyCreationDTO);
+        ValueTask<List<Speciality>> GetAllAsync();
+        ValueTask<Speciality> GetByIdAsync(long id);
+        ValueTask<Speciality> UpdateAsync(SpecialityModificationDTO specialtyModificationDTO, long id);
+        ValueTask<Speciality> DeleteAsync(long id);
     }
 }
