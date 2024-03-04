@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions.Users;
 using Application.DataTransferObjects.Users;
 using Application.Services.Contracts.Users;
-using Application.ViewModel.Users;
 using Domain.Entities.Users;
 using Mapster;
 
@@ -14,47 +13,44 @@ namespace Application.Services.Users
         public RoleService(IRoleRepository roleRepository)
             => _roleRepository = roleRepository;
 
-        public async ValueTask<RoleViewModel> AddAsync(RoleCreateionDTO roleCreateionDTO)
+        public async ValueTask<Role> AddAsync(RoleCreateionDTO roleCreateionDTO)
         {
             var role = roleCreateionDTO.Adapt<Role>();
             var result = await _roleRepository.InsertAsync(role);
-            var roleViewModel = result.Adapt<RoleViewModel>();
 
-            return roleViewModel;
+            return result;
         }
 
-        public async ValueTask<RoleViewModel> DeleteAsync(long id)
+        public async ValueTask<Role> DeleteAsync(long id)
         {
             var result = await _roleRepository.DeleteAsync(id);
-            var roleViewModel = result.Adapt<RoleViewModel>();
+            var Role = result.Adapt<Role>();
 
-            return roleViewModel;
+            return Role;
         }
 
-        public async ValueTask<List<RoleViewModel>> GetAllAsync()
+        public async ValueTask<List<Role>> GetAllAsync()
         {
-            var result = _roleRepository.SelectAll();
-            var roleViewModels = result.ToList().Adapt<List<RoleViewModel>>();
+            var result = _roleRepository.SelectAll().ToList();
 
-            return roleViewModels;
+            return result;
         }
 
-        public async ValueTask<RoleViewModel> GetByIdAsync(long id)
+        public async ValueTask<Role> GetByIdAsync(long id)
         {
             var result = await _roleRepository.SelectByIdAsync(id);
-            var roleViewModel = result.Adapt<RoleViewModel>();
 
-            return roleViewModel;
+            return result;
         }
 
-        public async ValueTask<RoleViewModel> UpdateAsync(RoleModificationDTO roleModificationDTO, long id)
+        public async ValueTask<Role> UpdateAsync(RoleModificationDTO roleModificationDTO, long id)
         {
             var role = roleModificationDTO.Adapt<Role>();
             role.Id = id;
-            var result = await _roleRepository.UpdateAsync(role);
-            var roleViewModel = result.Adapt<RoleViewModel>();
 
-            return roleViewModel;
+            var result = await _roleRepository.UpdateAsync(role);
+
+            return result;
         }
     }
 }

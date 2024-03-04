@@ -2,7 +2,6 @@ using Application.Abstractions.Courses;
 using Application.Abstractions.Users;
 using Application.DataTransferObjects.Courses;
 using Application.Services.Contracts.Courses;
-using Application.ViewModel.Courses;
 using Domain.Entities.Courses;
 using Mapster;
 
@@ -20,52 +19,47 @@ namespace Application.Services.Courses
             _teacherRepository = teacherRepository;
         }
 
-        public async ValueTask<CourseViewModel> AddAsync(CourseCreationDTO courseCreationDTO)
+        public async ValueTask<Course> AddAsync(CourseCreationDTO courseCreationDTO)
         {
             var course = courseCreationDTO.Adapt<Course>();
 
             var teachers = _teacherRepository.SelectAll(courseCreationDTO.Teachers).ToList();
             course.Teachers = teachers;
 
-            var result = await _courseRepository.InsertAsync(course);
-            var courseViewModel = result.Adapt<CourseViewModel>();
+            var courseResult = await _courseRepository.InsertAsync(course);
 
-            return courseViewModel;
+            return courseResult;
         }
 
-        public async ValueTask<CourseViewModel> DeleteAsync(long id)
+        public async ValueTask<Course> DeleteAsync(long id)
         {
-            var result = await _courseRepository.DeleteAsync(id);
-            var courseViewModel = result.Adapt<CourseViewModel>();
+            var course = await _courseRepository.DeleteAsync(id);
 
-            return courseViewModel;
+            return course;
         }
 
-        public async ValueTask<List<CourseViewModel>> GetAllAsync()
+        public async ValueTask<List<Course>> GetAllAsync()
         {
-            var results = _courseRepository.SelectAll();
-            var courseViewModel = results.Adapt<List<CourseViewModel>>();
+            var results = _courseRepository.SelectAll().ToList();
 
-            return courseViewModel;
+            return results;
         }
 
-        public async ValueTask<CourseViewModel> GetByIdAsync(long id)
+        public async ValueTask<Course> GetByIdAsync(long id)
         {
-            var result = await _courseRepository.SelectByIdAsync(id);
-            var courseViewModel = result.Adapt<CourseViewModel>();
+            var course = await _courseRepository.SelectByIdAsync(id);
 
-            return courseViewModel;
+            return course;
         }
 
-        public async ValueTask<CourseViewModel> UpdateAsync(CourseModificationDTO courseModificationDTO, long id)
+        public async ValueTask<Course> UpdateAsync(CourseModificationDTO courseModificationDTO, long id)
         {
             var course = courseModificationDTO.Adapt<Course>();
             course.Id = id;
 
             var result = await _courseRepository.UpdateAsync(course);
-            var courseViewModel = result.Adapt<CourseViewModel>();
 
-            return courseViewModel;
+            return result;
         }
     }
 }

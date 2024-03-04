@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions.Users;
 using Application.DataTransferObjects.Users;
 using Application.Services.Contracts.Users;
-using Application.ViewModel.Users;
 using Domain.Entities.Users;
 using Mapster;
 
@@ -15,38 +14,35 @@ namespace Application.Services.Users
             => _teacherRepository = teacherRepository;
 
 
-        public async ValueTask<List<TeacherViewModel>> GetAllAsync()
+        public async ValueTask<List<Teacher>> GetAllAsync()
         {
-            var result = _teacherRepository.SelectAll();
-            var teacherViewModels = result.ToList().Adapt<List<TeacherViewModel>>();
+            var result = _teacherRepository.SelectAll().ToList();
 
-            return teacherViewModels;
+            return result;
         }
 
-        public async ValueTask<TeacherViewModel> GetByIdAsync(long id)
+        public async ValueTask<Teacher> GetByIdAsync(long id)
         {
             var result = await _teacherRepository.SelectByIdAsync(id);
-            var teacherViewModel = result.Adapt<TeacherViewModel>();
 
-            return teacherViewModel;
+            return result;
         }
 
-        public async ValueTask<TeacherViewModel> UpdateAsync(TeacherModificationDTO teacherModificationDTO, long id)
+        public async ValueTask<Teacher> UpdateAsync(TeacherModificationDTO teacherModificationDTO, long id)
         {
             var teacher = teacherModificationDTO.Adapt<Teacher>();
             teacher.Id = id;
-            var result = await _teacherRepository.UpdateAsync(teacher);
-            var teacherViewModel = result.Adapt<TeacherViewModel>();
 
-            return teacherViewModel;
+            var result = await _teacherRepository.UpdateAsync(teacher);
+
+            return result;
         }
 
-        public async ValueTask<TeacherViewModel> DeleteAsync(long id)
+        public async ValueTask<Teacher> DeleteAsync(long id)
         {
             var result = await _teacherRepository.DeleteAsync(id);
-            var teacherViewModel = result.Adapt<TeacherViewModel>();
 
-            return teacherViewModel;
+            return result;
         }
     }
 }

@@ -1,7 +1,6 @@
 using Application.Abstractions.Lessons;
 using Application.DataTransferObjects.Lessons;
 using Application.Services.Contracts.Lessons;
-using Application.ViewModel.Lessons;
 using Domain.Entities.Lessons;
 using Mapster;
 
@@ -20,7 +19,7 @@ namespace Application.Services.Lessons
             var attendances = await _attendanceRepository.InsertAsync(attendance);
             var result = attendances.Adapt<ViewModel.Lessons.AttendanceViewModel>();
 
-            return result;
+            return attendances;
         }
 
         public async ValueTask<ViewModel.Lessons.AttendanceViewModel> DeleteAsync(long id)
@@ -28,7 +27,7 @@ namespace Application.Services.Lessons
             var attendance = await _attendanceRepository.DeleteAsync(id);
             var attendanceviewmodel = attendance.Adapt<ViewModel.Lessons.AttendanceViewModel>();
 
-            return attendanceviewmodel;
+            return attendance;
         }
 
         public async ValueTask<List<ViewModel.Lessons.AttendanceViewModel>> GetAllAsync()
@@ -36,7 +35,7 @@ namespace Application.Services.Lessons
             var attendance = _attendanceRepository.SelectAll();
             var attendaces = attendance.ToList().Adapt<List<ViewModel.Lessons.AttendanceViewModel>>();
 
-            return attendaces;
+            return attendances;
         }
 
         public async ValueTask<ViewModel.Lessons.AttendanceViewModel> GetByIdAsync(long id)
@@ -44,7 +43,7 @@ namespace Application.Services.Lessons
             var attendance = await _attendanceRepository.SelectByIdAsync(id);
             var result = attendance.Adapt<ViewModel.Lessons.AttendanceViewModel>();
 
-            return result;
+            return attendance;
         }
 
         public async ValueTask<ViewModel.Lessons.AttendanceViewModel> UpdateAsync(AttendanceModificationDTO attendanceModificationDTO, long id)
@@ -54,7 +53,7 @@ namespace Application.Services.Lessons
             var attendances = await _attendanceRepository.UpdateAsync(attendance);
             var result = attendances.Adapt<ViewModel.Lessons.AttendanceViewModel>();
 
-            return result;
+            return updated;
         }
     }
 }

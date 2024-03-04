@@ -1,8 +1,9 @@
 ﻿using Application.Abstractions.Homeworks;
 using Application.DataTransferObjects.HomeWorks;
 using Application.Services.Contracts.Homeworks;
-using Application.ViewModel.Homeworks;
+
 using Domain.Entities.Homeworks;
+
 using Mapster;
 
 namespace Application.Services.Homeworks
@@ -14,45 +15,41 @@ namespace Application.Services.Homeworks
         public HomeworkFileService(IHomeworkFileRepository repository)
             => _repository = repository;
 
-        public async ValueTask<HomeworkFileViewModel> AddAsync(HomeworkFileCreationDTO homeworkFileCreationDTO)
+        public async ValueTask<HomeworkFile> AddAsync(HomeworkFileCreationDTO homeworkFileCreationDTO)
         {
             var homeworkFile = homeworkFileCreationDTO.Adapt<HomeworkFile>();
-            var created = await _repository.InsertAsync(homeworkFile);
-            var result = created.Adapt<HomeworkFileViewModel>();
+            var result = await _repository.InsertAsync(homeworkFile);
 
             return result;
         }
 
-        public async ValueTask<List<HomeworkFileViewModel>> GetAllAsync()
+        public async ValueTask<List<HomeworkFile>> GetAllAsync()
         {
-            var homeworkfiles = _repository.SelectAll();
-            var result = homeworkfiles.ToList().Adapt<List<HomeworkFileViewModel>>();
+            var homeworkfiles = _repository.SelectAll().ToList();
 
-            return result;
+            return homeworkfiles;
         }
 
-        public async ValueTask<HomeworkFileViewModel> GetByIdAsync(long id)
+        public async ValueTask<HomeworkFile> GetByIdAsync(long id)
         {
             var homeworkfile = await _repository.SelectByIdAsync(id);
-            var result = homeworkfile.Adapt<HomeworkFileViewModel>();
 
-            return result;
+            return homeworkfile;
         }
 
-        public async ValueTask<HomeworkFileViewModel> UpdateAsync(HomeworkFileModificationDTO homeworkFileModificationDTO, long id)
+        public async ValueTask<HomeworkFile> UpdateAsync(HomeworkFileModificationDTO homeworkFileModificationDTO, long id)
         {
             var homeworkfile = homeworkFileModificationDTO.Adapt<HomeworkFile>();
             homeworkfile.Id = id;
-            var updated = _repository.UpdateAsync(homeworkfile);
-            var result = updated.Adapt<HomeworkFileViewModel>();
+
+            var result = await _repository.UpdateAsync(homeworkfile);
 
             return result;
         }
 
-        public async ValueTask<HomeworkFileViewModel> DeleteAsync(long id)
+        public async ValueTask<HomeworkFile> DeleteAsync(long id)
         {
-            var homeworkfile = _repository.DeleteAsync(id);
-            var result = homeworkfile.Adapt<HomeworkFileViewModel>();
+            var result = await _repository.DeleteAsync(id);
 
             return result;
         }

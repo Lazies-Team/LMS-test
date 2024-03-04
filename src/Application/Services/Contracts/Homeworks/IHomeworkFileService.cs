@@ -1,14 +1,14 @@
 ﻿using Application.DataTransferObjects.HomeWorks;
-using Application.ViewModel.Homeworks;
+using Domain.Entities.Homeworks;
 
 namespace Application.Services.Contracts.Homeworks
 {
     public interface IHomeworkFileService
     {
-        ValueTask<HomeworkFileViewModel> AddAsync(HomeworkFileCreationDTO homeworkFileCreationDTO);
-        ValueTask<List<HomeworkFileViewModel>> GetAllAsync();
-        ValueTask<HomeworkFileViewModel> GetByIdAsync(long id);
-        ValueTask<HomeworkFileViewModel> UpdateAsync(HomeworkFileModificationDTO homeworkFileModificationDTO, long id);
-        ValueTask<HomeworkFileViewModel> DeleteAsync(long id);
+        ValueTask<HomeworkFile> AddAsync(HomeworkFileCreationDTO homeworkFileCreationDTO);
+        ValueTask<List<HomeworkFile>> GetAllAsync();
+        ValueTask<HomeworkFile> GetByIdAsync(long id);
+        ValueTask<HomeworkFile> UpdateAsync(HomeworkFileModificationDTO homeworkFileModificationDTO, long id);
+        ValueTask<HomeworkFile> DeleteAsync(long id);
     }
 }

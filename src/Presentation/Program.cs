@@ -1,5 +1,8 @@
 using Application;
 using Infrastructure;
+
+using Newtonsoft.Json;
+
 using Presentation.Middlewares;
 using System.Text.Json.Serialization;
 
@@ -8,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers()
     .AddJsonOptions(o =>
     {
-        o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         o.JsonSerializerOptions.MaxDepth = 0;
     });
 

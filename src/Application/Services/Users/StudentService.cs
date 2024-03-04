@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions.Users;
 using Application.DataTransferObjects.Users;
 using Application.Services.Contracts.Users;
-using Application.ViewModel.Users;
 using Domain.Entities.Users;
 using Mapster;
 
@@ -14,39 +13,35 @@ namespace Application.Services.Users
         public StudentService(IStudentRepository studentRepository)
             => _studentRepository = studentRepository;
 
-        public async ValueTask<List<StudentViewModel>> GetAllAsync()
+        public async ValueTask<List<Student>> GetAllAsync()
         {
-            var result = _studentRepository.SelectAll();
-            var studentViewModels = result.ToList().Adapt<List<StudentViewModel>>();
+            var result = _studentRepository.SelectAll().ToList();
 
-            return studentViewModels;
+            return result;
         }
 
-        public async ValueTask<StudentViewModel> GetByIdAsync(long id)
+        public async ValueTask<Student> GetByIdAsync(long id)
         {
             var result = await _studentRepository.SelectByIdAsync(id);
-            var studentViewModel = result.Adapt<StudentViewModel>();
 
-            return studentViewModel;
+            return result;
         }
 
-        public async ValueTask<StudentViewModel> UpdateAsync(StudentModificationDTO studentModificationDTO, long id)
+        public async ValueTask<Student> UpdateAsync(StudentModificationDTO studentModificationDTO, long id)
         {
             var student = studentModificationDTO.Adapt<Student>();
             student.Id = id;
 
             var result = await _studentRepository.UpdateAsync(student);
-            var studentViewModel = result.Adapt<StudentViewModel>();
 
-            return studentViewModel;
+            return result;
         }
 
-        public async ValueTask<StudentViewModel> DeleteAsync(long id)
+        public async ValueTask<Student> DeleteAsync(long id)
         {
             var result = await _studentRepository.DeleteAsync(id);
-            var studentViewModel = result.Adapt<StudentViewModel>();
 
-            return studentViewModel;
+            return result;
         }
     }
 }

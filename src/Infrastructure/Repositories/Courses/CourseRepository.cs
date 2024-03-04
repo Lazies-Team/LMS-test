@@ -39,9 +39,6 @@ namespace Infrastructure.Repositories.Courses
         public IQueryable<Course> SelectAll()
         {
             var course = _context.Courses
-                .Include(x => x.Students)
-                .Include(x => x.Teachers)
-                .Include(x => x.Specialty)
                 .AsNoTracking();
 
             return course;
@@ -61,15 +58,15 @@ namespace Infrastructure.Repositories.Courses
 
         public async ValueTask<Course> UpdateAsync(Course entity)
         {
-            Course? course = await _context.Courses
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == entity.Id);
+            //Course? course = await _context.Courses
+            //    .AsNoTracking()
+            //    .FirstOrDefaultAsync(x => x.Id == entity.Id);
 
-            if (course == null)
-                throw new CourseNotFound();
+            //if (course == null)
+            //    throw new CourseNotFound();
 
-            course = entity.Adapt(course);
-            var entry = _context.Courses.Update(course);
+            //course = entity.Adapt(course);
+            var entry = _context.Courses.Update(entity);
             await _context.SaveChangesAsync();
 
             return entry.Entity;

@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions.Users;
 using Application.DataTransferObjects.Users;
 using Application.Services.Contracts.Users;
-using Application.ViewModel.Users;
 using Domain.Entities.Users;
 using Mapster;
 
@@ -14,39 +13,35 @@ namespace Application.Services.Users
         public AdminService(IAdminRepository adminRepository)
             => _adminRepository = adminRepository;
 
-        public async ValueTask<AdminViewModel> DeleteAsync(long id)
+        public async ValueTask<Admin> DeleteAsync(long id)
         {
             var result = await _adminRepository.DeleteAsync(id);
-            var adminViewModel = result.Adapt<AdminViewModel>();
 
-            return adminViewModel;
+            return result;
         }
 
-        public async ValueTask<List<AdminViewModel>> GetAllAsync()
+        public async ValueTask<List<Admin>> GetAllAsync()
         {
-            var result = _adminRepository.SelectAll();
-            var adminViewModels = result.ToList().Adapt<List<AdminViewModel>>();
+            var result = _adminRepository.SelectAll().ToList();
 
-            return adminViewModels;
+            return result;
         }
 
-        public async ValueTask<AdminViewModel> GetByIdAsync(long id)
+        public async ValueTask<Admin> GetByIdAsync(long id)
         {
             var result = await _adminRepository.SelectByIdAsync(id);
-            var adminViewModel = result.Adapt<AdminViewModel>();
 
-            return adminViewModel;
+            return result;
         }
 
-        public async ValueTask<AdminViewModel> UpdateAsync(AdminModificationDTO adminModificationDTO, long id)
+        public async ValueTask<Admin> UpdateAsync(AdminModificationDTO adminModificationDTO, long id)
         {
             var admin = adminModificationDTO.Adapt<Admin>();
             admin.Id = id;
 
             var result = await _adminRepository.UpdateAsync(admin);
-            var adminViewModel = result.Adapt<AdminViewModel>();
 
-            return adminViewModel;
+            return result;
         }
     }
 }
