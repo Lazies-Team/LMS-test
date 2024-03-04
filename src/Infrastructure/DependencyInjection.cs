@@ -41,6 +41,7 @@ namespace Infrastructure
 
             //Lessons
             services.AddScoped<ILessonRepository, LessonRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
 
             return services;
         }
