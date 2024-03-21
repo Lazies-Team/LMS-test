@@ -18,3 +18,5 @@ Project oddiy WebApi ko'rinishida quriladi.
 - [Link](https://dbdiagram.io/d/653bacedffbf5169f096a3d0).
 ![Untitled](https://github.com/Lazies-Team/LMS/assets/107931170/301cd377-eedc-4378-ac1b-2de72ebabeee)
 
+
+
